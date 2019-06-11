@@ -22,11 +22,15 @@ public class ResponsavelController {
 		this.repository.persistir(responsavel);
 	}
 	
-	public Responsavel consultar(int id) {
+	public Responsavel consultar(String cpfResp) {
 		return null;
 	}
 	
-	public void remover (int id) {
+	public void excluir (String cpfResp) {
+		
+	}
+
+	public void alterar(String cpfResp, String nomeAtual) {
 		
 	}
 	
