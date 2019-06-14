@@ -23,15 +23,15 @@ public class ResponsavelController {
 	}
 	
 	public Responsavel consultar(String cpfResp) {
-		return null;
+		return this.repository.consultar(cpfResp);
 	}
 	
 	public void excluir (String cpfResp) {
-		
+		this.repository.remover(cpfResp);
 	}
 
 	public void alterar(String cpfResp, String nomeAtual) {
-		
+		this.repository.atualizar(nomeAtual);
 	}
 	
 	 
