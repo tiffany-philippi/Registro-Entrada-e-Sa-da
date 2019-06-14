@@ -16,14 +16,16 @@ public class Main {
 		//RESPONSÁVEL
 		System.out.println("Deseja atuar em qual tabela do banco de dados? (1- Responsavel, 2- Aluno)");
 		int table = sc.nextInt();
-		String usuarioDesj;
 		
 		if (table == 1) {
 			executarResponsavel();
 			System.out.println("Caso deseje remover um responsável, digite seu CPF. Caso não, digite 'sair'.");
-			usuarioDesj = sc.nextLine();
+			String usuarioDesj = sc.nextLine();
 			if (usuarioDesj != "sair") {
 				exlcuirResp(usuarioDesj);
+				System.out.println("Usuário removido.");
+			} else {
+				System.out.println("Operação cancelada.");
 			}
 			System.out.println("Caso deseje alterar um responsável, digite seu CPF. Caso não, digite 'sair'.");
 			usuarioDesj = sc.nextLine();
@@ -31,6 +33,9 @@ public class Main {
 				System.out.println("Insira o nome atual.");
 				String nomeAtual = sc.nextLine();
 				alterarResp(usuarioDesj, nomeAtual);
+				System.out.println("Usuário removido.");
+			} else {
+				System.out.println("Operação cancelada.");
 			}
 			System.out.println("Caso deseje consultar os dados de um responsável, digite seu CPF. Caso não, digite 'sair'.");
 			usuarioDesj = sc.nextLine();
@@ -40,7 +45,7 @@ public class Main {
 		} else if (table == 2) {
 			executarAluno();
 			System.out.println("Caso deseje remover um aluno, digite sua matrícula. Caso não, digite 'sair'.");
-			usuarioDesj = sc.nextLine();
+			String usuarioDesj = sc.nextLine();
 			if (usuarioDesj != "sair") {
 				exlcuirAluno(usuarioDesj);
 			}
@@ -66,7 +71,7 @@ public class Main {
 	
 	protected static void executarResponsavel() throws SQLException {
 		//criar o objeto Responsável
-		Responsavel resp = new Responsavel("102.391.293-12", "Carlos Alberto Gomes", "Rua João Carvalho", "48991284720", "calbg@outlook.com");
+		Responsavel resp = new Responsavel();
 		ResponsavelController contr = new ResponsavelController();
 		contr.persistir(resp);
 	}
@@ -78,7 +83,9 @@ public class Main {
 
 	private static void alterarResp(String cpfResp, String nomeAtual) {
 		ResponsavelController contr = new ResponsavelController();
-		contr.alterar(cpfResp, nomeAtual);
+		Responsavel resp = contr.consultar(cpfResp);
+		resp.setNome(nome);
+		contr.alterar(resp);
 	}
 
 	private static void exlcuirResp(String cpfResp) {

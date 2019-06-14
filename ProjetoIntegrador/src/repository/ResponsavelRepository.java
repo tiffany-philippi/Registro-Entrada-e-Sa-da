@@ -12,10 +12,9 @@ import model.Responsavel;
 public class ResponsavelRepository {
  
 	public void persistir(Responsavel responsavel) throws SQLException {
-		Connection conn = ConexaoBD.getConexao();
-		String sql = "INSERT INTO responsavel VALUES ('"+ resp.getCPFResp() + "','" + resp.getNome() + "','" + resp.getFoneResp() + "','" + resp.getEndereco() + "','" + resp.getEmail() + "');";
-		System.out.println(sql);
-		try {
+		String sql = "INSERT INTO responsavel VALUES ('"+ responsavel.getCPFResp() + "','" + responsavel.getNome() + "','" + responsavel.getEndereco() + "','" + responsavel.getFoneResp() + "','" + responsavel.getEmail() + "');";
+//		System.out.println(sql);
+		try (Connection conn = ConexaoBD.getConexao()) {
 			Statement stmtInsert = conn.createStatement();
 			stmtInsert.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -23,12 +22,13 @@ public class ResponsavelRepository {
 		}
 	}
 	
-	public Responsavel consultar(String cpf_resp, String nome_resp, String endereco_resp, String endereco_comercial, String telefone_resp, String telefone_comercial, String email_resp) {
+	public Responsavel consultar(String cpf_resp) {
 		Statement stmt = null;
 		ResultSet resultSet = null;
 		String sql = "SELECT * FROM responsavel WHERE cpf_resp = '" + cpf_resp + "';";
+		Responsavel resp = null;
 		
-		try (Connection conn = ConexaoBD.getConexao()){
+		try (Connection conn = ConexaoBD.getConexao()) {
 		stmt = conn.createStatement();
 		resultSet = stmt.executeQuery(sql);
 		
@@ -39,13 +39,13 @@ public class ResponsavelRepository {
 		String email = null;
 		
 			while(resultSet.next()) {
-				cpf = resultSet.getString(cpf_resp);
-				nome = resultSet.getString(nome_resp);
-				endereco = resultSet.getString(endereco_resp);
-				telefone = resultSet.getString(telefone);
-				email = resultSet.getString(email_resp);
+				cpf = resultSet.getString("cpf_resp");
+				nome = resultSet.getString("nome_resp");
+				endereco = resultSet.getString("endereco_resp");
+				telefone = resultSet.getString("telefone_resp");
+				email = resultSet.getString("email_resp");
 
-				Responsavel resp = new Responsavel(cpf, nome, endereco, telefone_resp, email);
+				resp = new Responsavel(cpf, nome, endereco, telefone, email);
 				System.out.println("CPF: " + cpf + "\nNome: " + nome + 
 						"\nEndereço: " + endereco + "\nTelefone: " + telefone 
 						+ "\nEmail: " + email);
@@ -54,7 +54,7 @@ public class ResponsavelRepository {
 		} catch (SQLException e) {
 			throw new RepositoryException(e);
 		}
-		return sql;
+		return resp;
 		
 		
 	}
@@ -71,15 +71,15 @@ public class ResponsavelRepository {
 		}
 	}
 	
-	public void atualizar(Responsavel resp) throws SQLException {
-		Connection conn = ConexaoBD.getConexao();
-		String sql = "UPDATE responsavel SET nome_resp = '" + nomeAtual + "' WHERE cpf_resp = '" + resp + "';";
+	public void atualizar(String nomeAtual, String cpfResp) throws SQLException {
+		String sqlup = "UPDATE responsavel SET nome_resp = '" + nomeAtual + "' WHERE cpf_resp = '" + cpfResp + "';";
 		Statement stmtUpdate;
-		try {
+		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
-			stmtUpdate.executeUpdate(sql);
+			stmtUpdate.executeUpdate(sqlup);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+		return;
 	}
 }
