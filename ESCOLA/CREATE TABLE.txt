@@ -9,13 +9,12 @@ create table alunos (
 matricula varchar(10) PRIMARY KEY,
 cpf_resp varchar(14),
 telefone_resp varchar(11),
-cod_turma varchar(10),
 nome_aluno varchar(30),
 endereco_aluno varchar(30),
 email_aluno varchar(20),
 periodo enum("MATUTINO","VESPERTINO","INTEGRAL"),
-cursando enum("SIM", "NﾃO"),
-transp_publico enum("SIM", "NﾃO"),
+cursando enum("SIM", "Nﾃグ"),
+transp_publico enum("SIM", "Nﾃグ"),
 FOREIGN KEY (cpf_resp) REFERENCES responsavel(cpf_resp));
 
 create table funcionario (
@@ -23,7 +22,7 @@ cod_func int auto_increment PRIMARY KEY,
 nome_func varchar(30),
 email_func varchar(30),
 endereco_func varchar(30),
-empregado enum("SIM", "NﾃO"),
+empregado enum("SIM", "Nﾃグ"),
 carga_horaria int);
 
 create table autorizacao (
@@ -31,7 +30,7 @@ cod_autorizacao int auto_increment PRIMARY KEY,
 matricula varchar(10),
 data_autorizacao datetime,
 tipo_autorizacao enum("secretaria", "responsavel"),
-passagem enum("ENTRADA", "SAﾍDA"),
+passagem enum("ENTRADA", "SAﾃ好A"),
 FOREIGN KEY (matricula) REFERENCES alunos (matricula));
 
 create table registro (
@@ -39,8 +38,8 @@ cod_registro int auto_increment PRIMARY KEY,
 cod_autorizacao int,
 cod_func int,
 matricula varchar(10),
-passagem enum("ENTRADA", "SAﾍDA"),
+passagem enum("ENTRADA", "SAﾃ好A"),
 data_autorizacao datetime,
 FOREIGN KEY (cod_autorizacao) REFERENCES autorizacao (cod_autorizacao),
-FOREIGN KEY (cod_fun) REFERENCES funcionario (cod_func),
+FOREIGN KEY (cod_func) REFERENCES funcionario (cod_func),
 FOREIGN KEY (matricula) REFERENCES alunos (matricula));
