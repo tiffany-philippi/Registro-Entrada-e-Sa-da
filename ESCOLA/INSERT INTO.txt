@@ -53,25 +53,25 @@ insert into responsavel values ("253.345.424-40"	,"Jaime Eloísio Fonseca","Rua 
 ("	200.294.510-28"	, "Fernanda Prim",	 "Rua Itapeva",	"48996662538"	, "ferrprim@hotmail.com");
 
 insert into autorizacao values 
-(null,"2014101003",20140921081508,"responsavel","entrada"),
-(null, "2014101007", 20140921075840, "secretaria","entrada"), 
-(null, "2014102001", 20141108092000, "secretaria","entrada"), 
-(null, "2014101003", 20141123110000,"responsavel", "saída"), 
-(null,"2014101002", 20141203101500, "secretaria","saída"), 
-(null, "2014101005", 20141203101500, "secretaria","saída"),
-(null, "2014101003", 20141203101500, "secretaria","saída"), 
-(null, "201410104", 20141203101500, "secretaria","saída"), 
-(null, "2014101001", 20141203101500, "secretaria","saída"),
-(null, "2014101006", 20141203101500, "secretaria","saída"),
-( null, "2014101007", 20141203101500,"secretaria", "saída"),
-(null, "2014102001", 20141203101500, "secretaria","saída"), 
-(null, "2014102004", 20141203101500, "secretaria","saída"), 
-(null,"2014102005",20141203101500, "secretaria","saída"), 
-(null, "2014102006", 20141203101500,"secretaria", "saída"),
-(null, "2015203007", 20150301160000, "responsavel","saída"), 
-(null, "2015203003", 20150303134903,"secretaria","entrada"), 
-(null, "2015203001", 20150303135129, "responsavel","entrada"), 
-(null, "2015203008", 20150318164000, "responsavel","saída");
+(null, "2014101003", 20140921081508, "responsavel", "entrada"),
+(null, "2014101007", 20140921075840, "secretaria", "entrada"), 
+(null, "2014102001", 20141108092000, "secretaria", "entrada"), 
+(null, "2014101003", 20141123110000, "responsavel", "saída"), 
+(null, "2014101002", 20141203101500, "secretaria", "saída"), 
+(null, "2014101005", 20141203101500, "secretaria", "saída"),
+(null, "2014101003", 20141203101500, "secretaria", "saída"), 
+(null, "2014101004", 20141203101500, "secretaria", "saída"), 
+(null, "2014101001", 20141203101500, "secretaria", "saída"),
+(null, "2014101006", 20141203101500, "secretaria", "saída"),
+(null, "2014101007", 20141203101500, "secretaria", "saída"),
+(null, "2014102001", 20141203101500, "secretaria", "saída"), 
+(null, "2014102004", 20141203101500, "secretaria", "saída"), 
+(null, "2014102005", 20141203101500, "secretaria", "saída"), 
+(null, "2014102006", 20141203101500, "secretaria", "saída"),
+(null, "2015203007", 20150301160000, "responsavel", "saída"), 
+(null, "2015203003", 20150303134903, "secretaria", "entrada"), 
+(null, "2015203001", 20150303135129, "responsavel", "entrada"), 
+(null, "2015203008", 20150318164000, "responsavel", "saída");
 
 
 insert into registro values  
