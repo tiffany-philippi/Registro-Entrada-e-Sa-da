@@ -1,7 +1,3 @@
-
-
-
-
 insert into alunos values("	2014101001"	,"	253.345.424-40","	48991289028",	"2014-101",	"Eduardo Fonseca ",	"Rua Leonel Pereira"	, "edu_fons@gmail.com"	, "MATUTINO",	"NÃO",	"SIM"),
 ("	2014101002"	,"	534.567.876-23","	48996284728",	"2014-101",	"Joaquim Medeiros",	"Rua Itapiranga"	, "jocamedeee@hotmail.com"	, "MATUTINO",	"NÃO",	"SIM"),
 ("	2014101003"	,"	436.658.126-82","	48984759928",	"2014-101",	"Gabriela Alencar",	"Rua Laércio Costa"	, "gabncar@gmail.com"	, "MATUTINO",	"NÃO",	"NÃO"),
@@ -19,7 +15,7 @@ insert into alunos values("	2014101001"	,"	253.345.424-40","	48991289028",	"2014
 ("	2014102008"	,"	625.265.765-10","	48991292901",	"2014-102",	"Sara Matos",	"Servidão Nonô"	, "matos_sara377@gmail.com"	, "INTEGRAL",	"NÃO",	"NÃO"),
 ("	2014102009"	,"	765.202.232-52","	48991204924",	"2014-102",	"Laura Dante",	"Servidão Osmar João Costa"	, "laurinha_laurad@hotmail.com"	, "INTEGRAL",	"NÃO",	"NÃO"),
 ("	2015203001"	,"	286.927.255-08","	48984502941",	"2015-203", 	"Fabrício Cardoso",	 "Rua Maestro Aldo"	, "bricardoso@gmail.com"	,"VESPERTINO",	"NÃO",	"SIM"),
-("	2014203002"	,"	252.752.796-27","	48984529482",	"2015-203", 	"Moisés Mendonça",	 "Rua São Miguel"	, "moisa-moises@hotmail.com"	,"VESPERTINO",	"NÃO",	"SIM"),
+("	2015203002"	,"	252.752.796-27","	48984529482",	"2015-203", 	"Moisés Mendonça",	 "Rua São Miguel"	, "moisa-moises@hotmail.com"	,"VESPERTINO",	"NÃO",	"SIM"),
 ("	2015203003"	,"	258.865.256-80","	48999222039",	"2015-203", 	"Leonardo Degering",	 "Rua Patrício Farias"	, "leo_leonardodeg@gmail.com"	,"VESPERTINO",	"NÃO",	"NÃO"),
 ("	2015203004"	,"	825.278.925-68","	48991913940",	"2015-203", 	"Maria Luiza Conrado",	 "Servidão José Martins"	, "malu_conrado@gmail.com"	,"VESPERTINO",	"NÃO",	"NÃO"),
 ("	2015203005"	,"	862.257.862-03","	48991228491",	"2015-203", 	"Jenifer Brinhosa",	 "Rod. Amaro Antônio Vieira"	, "jejebrin@hotmail.com"	,"VESPERTINO",	"NÃO",	"SIM"),
