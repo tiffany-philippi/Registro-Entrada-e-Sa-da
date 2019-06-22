@@ -26,7 +26,7 @@ public class ResponsavelController {
 		return this.repository.consultar(cpfResp);
 	}
 	
-	public void excluir (String cpfResp) {
+	public void excluir (String cpfResp) throws SQLException {
 		this.repository.remover(cpfResp);
 	}
 

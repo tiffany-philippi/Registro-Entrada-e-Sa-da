@@ -12,7 +12,7 @@ import model.Responsavel;
 public class ResponsavelRepository {
  
 	public void persistir(Responsavel responsavel) throws SQLException {
-		String sql = "INSERT INTO responsavel VALUES ('"+ responsavel.getCPFResp() + "','" + responsavel.getNome() + "','" + responsavel.getEndereco() + "','" + responsavel.getFoneResp() + "','" + responsavel.getEmail() + "');";
+		String sql = "INSERT INTO responsavel VALUES ('"+ responsavel.getCPFResp() + "','" + responsavel.getNomeResp() + "','" + responsavel.getEnderecoResp() + "','" + responsavel.getFoneResp() + "','" + responsavel.getEmailResp() + "');";
 //		System.out.println(sql);
 		try (Connection conn = ConexaoBD.getConexao()) {
 			Statement stmtInsert = conn.createStatement();
@@ -45,7 +45,7 @@ public class ResponsavelRepository {
 				telefone = resultSet.getString("telefone_resp");
 				email = resultSet.getString("email_resp");
 
-				resp = new Responsavel(cpf, nome, endereco, telefone, email);
+				resp = new Responsavel();
 				System.out.println("CPF: " + cpf + "\nNome: " + nome + 
 						"\nEndereço: " + endereco + "\nTelefone: " + telefone 
 						+ "\nEmail: " + email);
@@ -60,10 +60,10 @@ public class ResponsavelRepository {
 	}
 	
 	public void remover(String cpfResp) throws SQLException {
-		Connection conn = ConexaoBD.getConexao();
-		String sql = "DELETE FROM responsavel WHERE cpfResp = '" + cpfResp + "';";
+		
+		String sql = "DELETE FROM responsavel WHERE cpf_resp = '" + cpfResp + "';";
 		Statement stmtUpdate;
-		try {
+		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
 		} catch (SQLException e1) {
@@ -71,12 +71,12 @@ public class ResponsavelRepository {
 		}
 	}
 	
-	public void atualizar(String nomeAtual, String cpfResp) throws SQLException {
-		String sqlup = "UPDATE responsavel SET nome_resp = '" + nomeAtual + "' WHERE cpf_resp = '" + cpfResp + "';";
+	public void atualizar(Responsavel responsavel) throws SQLException {
+		String sql = "UPDATE responsavel SET nome_resp = '" + responsavel.getNomeResp() + "' WHERE cpf_resp = '" + responsavel.getCPFResp() + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
-			stmtUpdate.executeUpdate(sqlup);
+			stmtUpdate.executeUpdate(sql);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}

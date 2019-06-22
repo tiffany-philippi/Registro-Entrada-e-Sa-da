@@ -15,32 +15,29 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		//RESPONSÁVEL
 		System.out.println("Deseja atuar em qual tabela do banco de dados? (1- Responsavel, 2- Aluno)");
-		int table = sc.nextInt();
+		int table = Integer.parseInt(sc.nextLine());
 		
 		if (table == 1) {
-			executarResponsavel();
-			System.out.println("Caso deseje remover um responsável, digite seu CPF. Caso não, digite 'sair'.");
-			String usuarioDesj = sc.nextLine();
-			if (usuarioDesj != "sair") {
-				exlcuirResp(usuarioDesj);
-				System.out.println("Usuário removido.");
-			} else {
-				System.out.println("Operação cancelada.");
-			}
-			System.out.println("Caso deseje alterar um responsável, digite seu CPF. Caso não, digite 'sair'.");
-			usuarioDesj = sc.nextLine();
-			if (usuarioDesj != "sair") {
-				System.out.println("Insira o nome atual.");
-				String nomeAtual = sc.nextLine();
-				alterarResp(usuarioDesj, nomeAtual);
-				System.out.println("Usuário removido.");
-			} else {
-				System.out.println("Operação cancelada.");
-			}
-			System.out.println("Caso deseje consultar os dados de um responsável, digite seu CPF. Caso não, digite 'sair'.");
-			usuarioDesj = sc.nextLine();
-			if (usuarioDesj != "sair") {
-				consultarResp(usuarioDesj);
+			System.out.println("Digite o CPF do responsável.");
+			String cpf = sc.nextLine();
+			System.out.println("Respectivamente, digite 1, 2, 3 ou 4, caso queira consultar, remover, inserir ou alterar um responsavel. Caso queira voltar ao menu anterior, digite 0.");
+			int escolha = Integer.parseInt(sc.nextLine());
+			System.out.println(escolha);
+			switch (escolha) {
+				case 1:
+					consultarResp(cpf);
+					break;
+				case 2:
+					exlcuirResp(cpf);
+					break;
+				case 3:
+					inserirResponsavel(cpf);
+					break;
+				case 4:
+					alterarResp(cpf);
+					break;
+					default:
+						System.out.println("Tente novamente.");
 			}
 		} else if (table == 2) {
 			executarAluno();
@@ -69,7 +66,7 @@ public class Main {
 	}
 	
 	
-	protected static void executarResponsavel() throws SQLException {
+	protected static void inserirResponsavel(String cpf) throws SQLException {
 		//criar o objeto Responsável
 		Responsavel resp = new Responsavel();
 		ResponsavelController contr = new ResponsavelController();
@@ -81,14 +78,14 @@ public class Main {
 		contr.consultar(cpfResp);
 	}
 
-	private static void alterarResp(String cpfResp, String nomeAtual) {
+	private static void alterarResp(String cpfResp) {
 		ResponsavelController contr = new ResponsavelController();
 		Responsavel resp = contr.consultar(cpfResp);
-		resp.setNome(nome);
-		contr.alterar(resp);
+		resp.setNomeResp(nomeResp);
+		contr.alterar(resp.setNomeResp(resp));
 	}
 
-	private static void exlcuirResp(String cpfResp) {
+	private static void exlcuirResp(String cpfResp) throws SQLException {
 		ResponsavelController contr = new ResponsavelController();
 		contr.excluir(cpfResp);
 	}
