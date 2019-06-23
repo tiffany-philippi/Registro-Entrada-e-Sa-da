@@ -18,27 +18,55 @@ public class Main {
 		int table = Integer.parseInt(sc.nextLine());
 		
 		if (table == 1) {
-			System.out.println("Digite o CPF do responsável.");
-			String cpf = sc.nextLine();
-			System.out.println("Respectivamente, digite 1, 2, 3 ou 4, caso queira consultar, remover, inserir ou alterar um responsavel. Caso queira voltar ao menu anterior, digite 0.");
-			int escolha = Integer.parseInt(sc.nextLine());
-			System.out.println(escolha);
-			switch (escolha) {
-				case 1:
-					consultarResp(cpf);
-					break;
-				case 2:
-					exlcuirResp(cpf);
-					break;
-				case 3:
-					inserirResponsavel(cpf);
-					break;
-				case 4:
-					alterarResp(cpf);
-					break;
-					default:
-						System.out.println("Tente novamente.");
+			System.out.println("Você deseja inserir um novo responsável? (1- SIM, 2- NÃO)");
+			int esc = Integer.parseInt(sc.nextLine());
+			if (esc == 1) {
+				inserirResponsavel();
+			} else {
+				System.out.println("Digite o CPF do responsável.");
+				String cpf = sc.nextLine();
+				System.out.println("Respectivamente, digite 1, 2 ou 3, caso queira consultar, remover ou alterar um responsavel. Caso queira voltar ao menu anterior, digite 0.");
+				int escolha = Integer.parseInt(sc.nextLine());
+				System.out.println(escolha);
+				switch (escolha) {
+//					case 0:
+//						voltar ao menu anterior;
+//						break;
+					case 1:
+						consultarResp(cpf);
+						break;
+					case 2:
+						exlcuirResp(cpf);
+						System.out.println("Usuário removido");
+						break;
+					case 3:
+						System.out.println("Qual informação você deseja alterar? (1- NOME, 2- TELEFONE, 3- EMAIL)");
+						int update = Integer.parseInt(sc.nextLine());
+						if (update == 1) {
+							System.out.print("Digite o nome atual: ");
+							String atualNome = sc.next();
+							System.out.print("Digite o novo nome: ");
+							String updateNome = sc.next();
+							alterarRespNome(atualNome, updateNome);
+						} else if (update == 2) {
+							System.out.print("Digite o telefone atual: ");
+							String atualFone = sc.next();
+							System.out.print("Digite o telefone nome: ");
+							String updateFone = sc.next();
+							alterarRespFone(atualFone, updateFone);
+						} else if (update == 3) {
+							System.out.print("Digite o email atual: ");
+							String atualEmail = sc.next();
+							System.out.print("Digite o novo email: ");
+							String updateEmail = sc.next();
+							alterarRespEmail(atualEmail, updateEmail);
+						}
+						break;
+						default:
+							System.out.println("Digite uma opção válida.");
+				}
 			}
+			
 		} else if (table == 2) {
 			executarAluno();
 			System.out.println("Caso deseje remover um aluno, digite sua matrícula. Caso não, digite 'sair'.");
@@ -66,7 +94,7 @@ public class Main {
 	}
 	
 	
-	protected static void inserirResponsavel(String cpf) throws SQLException {
+	protected static void inserirResponsavel() throws SQLException {
 		//criar o objeto Responsável
 		Responsavel resp = new Responsavel();
 		ResponsavelController contr = new ResponsavelController();
@@ -78,11 +106,20 @@ public class Main {
 		contr.consultar(cpfResp);
 	}
 
-	private static void alterarResp(String cpfResp) {
+	private static void alterarRespNome(String atualNome, String updateNome) {
 		ResponsavelController contr = new ResponsavelController();
-		Responsavel resp = contr.consultar(cpfResp);
-		resp.setNomeResp(nomeResp);
-		contr.alterar(resp.setNomeResp(resp));
+		Responsavel resp = contr.consultar(atualNome);
+		resp.setNomeResp(updateNome);
+	}
+	private static void alterarRespFone(String atualFone, String updateFone) {
+		ResponsavelController contr = new ResponsavelController();
+		Responsavel resp = contr.consultar(atualFone);
+		resp.setNomeResp(atualFone);
+	}
+	private static void alterarRespEmail(String atualEmail, String updateEmail) {
+		ResponsavelController contr = new ResponsavelController();
+		Responsavel resp = contr.consultar(atualEmail);
+		resp.setNomeResp(atualEmail);
 	}
 
 	private static void exlcuirResp(String cpfResp) throws SQLException {

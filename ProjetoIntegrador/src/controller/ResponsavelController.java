@@ -30,9 +30,10 @@ public class ResponsavelController {
 		this.repository.remover(cpfResp);
 	}
 
-	public void alterar(String cpfResp, String nomeAtual) {
-		this.repository.atualizar(nomeAtual);
+	public void alterarRespNome(String atualNome, Responsavel updateNome) throws SQLException {
+		this.repository.atualizarRespNome(updateNome);
 	}
+
 	
 	 
 	
