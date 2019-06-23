@@ -15,7 +15,8 @@ email_aluno varchar(20),
 periodo enum("MATUTINO","VESPERTINO","INTEGRAL"),
 cursando enum("SIM", "NÃO"),
 transp_publico enum("SIM", "NÃO"),
-FOREIGN KEY (cpf_resp) REFERENCES responsavel(cpf_resp));
+FOREIGN KEY (cpf_resp) REFERENCES responsavel(cpf_resp),
+FOREIGN KEY (telefone_resp) REFERENCES responsavel(telefone_resp));
 
 create table funcionario (
 cod_func int auto_increment PRIMARY KEY,
