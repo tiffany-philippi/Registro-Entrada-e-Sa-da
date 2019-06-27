@@ -6,7 +6,8 @@ import model.Aluno;
 import repository.AlunoRepository;
 
 public class AlunoController {
-		private AlunoRepository repository;
+	
+	private AlunoRepository repository;
 	
 	public AlunoController() {
 		this.repository = new AlunoRepository();
@@ -28,7 +29,7 @@ public class AlunoController {
 		
 	}
 
-	public void consultar(String matricula) {
+	public Aluno consultar(Aluno matricula) {
 		// TODO Auto-generated method stub
 		
 	}

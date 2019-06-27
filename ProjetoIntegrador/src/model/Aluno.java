@@ -1,49 +1,61 @@
 package model;
 
-public class Aluno extends Pessoa{
+public class Aluno {
 	
-	private String codTurma;
 	private String matricula;
-	private Responsavel responsavel;
-	private Periodo periodo;
-	private SimNao cursando;
-	private SimNao transpPublico;
+	private String cpfResp;
+	private String telefoneResp;
+	private String nomeAluno;
+	private String enderecoAluno;
+	private String emailAluno;
+	private String periodo;
+	private String cursando;
+	private String transpPublico;
 	
-	public Aluno(String codTurma, String matricula, Responsavel responsavel, Periodo periodo, SimNao cursando, SimNao transpPublico, String nome, 
-			String endereco, String email) {
-		super(nome, endereco, email);
-		
-		this.codTurma = codTurma;
-		this.matricula = matricula;
+	public String getNomeAluno() {
+		return nomeAluno;
+	}
+	public void setNomeAluno(String nomeAluno) {
+		this.nomeAluno = nomeAluno;
+	}
+	public String getEnderecoAluno() {
+		return enderecoAluno;
+	}
+	public void setEnderecoAluno(String enderecoAluno) {
+		this.enderecoAluno = enderecoAluno;
+	}
+	public String getEmailAluno() {
+		return emailAluno;
+	}
+	public void setEmailAluno(String emailAluno) {
+		this.emailAluno = emailAluno;
+	}
+	public String getPeriodo() {
+		return periodo;
+	}
+	public void setPeriodo(String periodo) {
 		this.periodo = periodo;
+	}
+	public String getCursando() {
+		return cursando;
+	}
+	public void setCursando(String cursando) {
 		this.cursando = cursando;
+	}
+	public String getTranspPublico() {
+		return transpPublico;
+	}
+	public void setTranspPublico(String transpPublico) {
 		this.transpPublico = transpPublico;
-		this.responsavel = responsavel;
-	}
-
-	public Aluno(String string, String string2, String string3, String string4, String string5, String string6,
-			String string7, String string8, String string9, String string10, String string11) {
-		super(string6, string7, string8);
-			
-	}
-	
-	public String getTurma() {
-		return codTurma;
 	}
 	public String getMatricula() {
 		return matricula;
 	}
-	public Periodo getPeriodo() {
-		return periodo;
+	public String getCpfResp() {
+		return cpfResp;
 	}
-	public SimNao getCursando() {
-		return cursando;
-	}
-	public SimNao getTransPublico() {
-		return transpPublico;
-	}
-	public Responsavel getResponsavel() {
-		return responsavel;
+	public String getTelefoneResp() {
+		return telefoneResp;
 	}
 	
-}
+	
