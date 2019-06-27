@@ -43,3 +43,12 @@ data_autorizacao datetime,
 FOREIGN KEY (cod_autorizacao) REFERENCES autorizacao (cod_autorizacao),
 FOREIGN KEY (cod_func) REFERENCES funcionario (cod_func),
 FOREIGN KEY (matricula) REFERENCES alunos (matricula));
+
+Table registro para Java
+
+create table prontuario (
+cod_pront int auto_increment PRIMARY KEY,
+matricula varchar(10),
+passagem varchar(7),
+data_pront datetime,
+FOREIGN KEY (matricula) REFERENCES alunos (matricula));
