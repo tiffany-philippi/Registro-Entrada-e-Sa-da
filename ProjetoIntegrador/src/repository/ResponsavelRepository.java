@@ -12,7 +12,7 @@ import model.Responsavel;
 public class ResponsavelRepository {
  
 	public void persistir(Responsavel responsavel) throws SQLException {
-		String sql = "INSERT INTO responsavel VALUES ('"+ responsavel.getCPFResp() + "','" + responsavel.getNomeResp() + "','" + responsavel.getEnderecoResp() + "','" + responsavel.getFoneResp() + "','" + responsavel.getEmailResp() + "');";
+		String sql = "INSERT INTO resp VALUES ('"+ responsavel.getCPFResp() + "','" + responsavel.getNomeResp() + "','" + responsavel.getEnderecoResp() + "','" + responsavel.getFoneResp() + "','" + responsavel.getEmailResp() + "');";
 //		System.out.println(sql);
 		try (Connection conn = ConexaoBD.getConexao()) {
 			Statement stmtInsert = conn.createStatement();
@@ -25,7 +25,7 @@ public class ResponsavelRepository {
 	public Responsavel consultar(String cpf_resp) {
 		Statement stmt = null;
 		ResultSet resultSet = null;
-		String sql = "SELECT * FROM responsavel WHERE cpf_resp = '" + cpf_resp + "';";
+		String sql = "SELECT * FROM resp WHERE cpf_resp = '" + cpf_resp + "';";
 		Responsavel resp = null;
 		
 		try (Connection conn = ConexaoBD.getConexao()) {
@@ -60,7 +60,7 @@ public class ResponsavelRepository {
 	}
 	
 	public void remover(String cpfResp) throws SQLException {
-		String sql = "DELETE FROM responsavel WHERE cpf_resp = '" + cpfResp + "';";
+		String sql = "DELETE FROM resp WHERE cpf_resp = '" + cpfResp + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
@@ -71,7 +71,7 @@ public class ResponsavelRepository {
 	}
 	
 	public void atualizar(Responsavel responsavel) throws SQLException {
-		String sql = "UPDATE responsavel SET nome_resp = '" + responsavel.getNomeResp() + "',telefone_resp = '" + responsavel.getFoneResp() + "'email_resp = '" + responsavel.getEmailResp() + "' WHERE cpf_resp = '" + responsavel.getCPFResp() + "';";
+		String sql = "UPDATE resp SET nome_resp = '" + responsavel.getNomeResp() + "',telefone_resp = '" + responsavel.getFoneResp() + "'email_resp = '" + responsavel.getEmailResp() + "' WHERE cpf_resp = '" + responsavel.getCPFResp() + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();

@@ -45,8 +45,9 @@ public class Main {
 						System.out.println("Responsável removido");
 						break;
 					case 3:
-						System.out.println("Digite os novos campos (1- NOME, 2- TELEFONE, 3- EMAIL):");
 						System.out.println("Os campos serão alterados para o responsável de cpf: " + cpf);
+						System.out.println();
+						System.out.println("Digite os novos campos (1- NOME, 2- TELEFONE, 3- EMAIL):");
 							System.out.print("Digite o novo nome: ");
 							String updateNome = sc.next();
 							System.out.print("Digite o telefone novo: ");
@@ -103,7 +104,11 @@ public class Main {
 							System.out.println("Digite uma opção válida.");
 							break;
 				}
-			} else if (table == 3) {
+			} 
+		} 
+//		=================================================================================================================================================================
+		//REGISTRO
+		else if (table == 3) {
 				System.out.println("Deseja consultar, remover ou inserir? (1, 2, 3 respectivamente");
 				int escolha = Integer.parseInt(sc.nextLine());
 				System.out.println(escolha);
@@ -139,7 +144,7 @@ public class Main {
 //	====================================================================================================================================================
 	//RESPONSAVEL
 	
-	protected static void inserirResponsavel() {
+	private static void inserirResponsavel() {
 		//criar o objeto Responsável
 		Responsavel resp = new Responsavel();
 		ResponsavelController contr = new ResponsavelController();
@@ -154,7 +159,7 @@ public class Main {
 	private static void alterarResp(String cpf, String atualNome, String updateNome, String updateEmail) {
 		ResponsavelController contr = new ResponsavelController();
 		Responsavel resp = contr.consultar(cpf);
-		resp.setNomeResp(updateNome);
+		resp.setNomeResp(atualNome);
 		contr.atualizar(resp);
 	}
 	private static void exlcuirResp(String cpfResp) throws SQLException {
@@ -165,7 +170,7 @@ public class Main {
 //	====================================================================================================================================================
 	//ALUNO
 	
-	protected static void inserirAluno() throws SQLException {
+	protected static void inserirAluno(){
 		//criar o objeto Aluno
 		Aluno aluno = new Aluno();
 		AlunoController control = new AlunoController();
@@ -186,7 +191,8 @@ public class Main {
 //		Aluno aluno = contr.consultar(matricula);
 //		aluno.setNomeAluno(matricula);
 //	}
-	}
+	
+
 
 	private static void inserirRegistro(String matricula, String passagem, String data, String hora) {
 		Registro registro = new Registro();

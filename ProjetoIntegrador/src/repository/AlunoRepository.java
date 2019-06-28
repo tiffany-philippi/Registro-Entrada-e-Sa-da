@@ -12,7 +12,7 @@ import model.Responsavel;
 public class AlunoRepository {
 
 	public void persistir(Aluno aluno) throws SQLException {
-		String sql = "INSERT INTO alunos VALUES ('"+ aluno.getMatricula() + "','" + aluno.getCpfResp() + "','" + 
+		String sql = "INSERT INTO aluno VALUES ('"+ aluno.getMatricula() + "','" + aluno.getCpfResp() + "','" + 
 					aluno.getTelefoneResp() + "','" + aluno.getNomeAluno() + "','" + aluno.getEnderecoAluno() + aluno.getEmailAluno() + 
 					aluno.getPeriodo() + aluno.getCursando() + aluno.getTranspPublico() + "','" + "','" + "','" + "','" + "');";
 //		System.out.println(sql);
@@ -27,7 +27,7 @@ public class AlunoRepository {
 	public Aluno consultar(String matricula) {
 		Statement stmt = null;
 		ResultSet resultSet = null;
-		String sql = "SELECT * FROM alunos WHERE matricula = '" + matricula + "';";
+		String sql = "SELECT * FROM aluno WHERE matricula = '" + matricula + "';";
 		Aluno aluno = null;
 		
 		try (Connection conn = ConexaoBD.getConexao()) {
@@ -72,28 +72,31 @@ public class AlunoRepository {
 	
 	public void remover(String cpfResp) throws SQLException {
 		
-		String sql = "DELETE FROM alunos WHERE cpf_resp = '" + cpfResp + "';";
+		String sql = "DELETE FROM aluno WHERE cpf_resp = '" + cpfResp + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
+			System.out.println("Responsável removido.");
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 	}
 	
 	public void atualizarRespNome(Aluno aluno) throws SQLException {
-		String sql = "UPDATE alunos SET nome_resp = '" + aluno.getMatricula() + "' WHERE nome_aluno = '" + aluno.getNomeAluno() + "';";
+		String sql = "UPDATE aluno SET nome_resp = '" + aluno.getMatricula() + "' WHERE nome_aluno = '" + aluno.getNomeAluno() + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
+			System.out.println("Responsável alterado.");
+			
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 	}
 	public void atualizarRespTelefone(Responsavel aluno) throws SQLException {
-		String sql = "UPDATE alunos SET telefone_resp = '" + aluno.getFoneResp() + "' WHERE cpf_resp = '" + aluno.getCPFResp() + "';";
+		String sql = "UPDATE aluno SET telefone_resp = '" + aluno.getFoneResp() + "' WHERE cpf_resp = '" + aluno.getCPFResp() + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
@@ -103,7 +106,7 @@ public class AlunoRepository {
 		}
 	}
 	public void atualizarRespEmail(Responsavel aluno) throws SQLException {
-		String sql = "UPDATE alunos SET email_resp = '" + aluno.getEmailResp() + "' WHERE cpf_resp = '" + aluno.getCPFResp() + "';";
+		String sql = "UPDATE aluno SET email_resp = '" + aluno.getEmailResp() + "' WHERE cpf_resp = '" + aluno.getCPFResp() + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
