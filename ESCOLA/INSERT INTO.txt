@@ -1,6 +1,6 @@
 
 
-insert into responsavel values ("253.345.424-40"	,"Jaime Eloísio Fonseca","Rua Leonel Pereira","48991289028"	, "jaimefons@gmail.com"),
+insert into resp values ("253.345.424-40"	,"Jaime Eloísio Fonseca","Rua Leonel Pereira","48991289028"	, "jaimefons@gmail.com"),
 ("	534.567.876-23"	,"Maria do Rosário Medeiros",	"Rua Itapiranga","	48996284728"	, "maromedros@gmail.com"),("	436.658.126-82"	,"Geisa Alencar",	"Rua Laércio Costa","	48984759928"	, "gealenc@hotmail.com"),
 ("725.265.637-56"	,"João de Almeida Linhares",	"Servidão Nonô","	48984592042"	, "almeidalin@gmail.com"),
 ("365.736.245-76"	,"Cainan Gonçalo",	"Av. do Antão","	48998992847"	, "cainangonn@gmail.com"),
@@ -25,7 +25,7 @@ insert into responsavel values ("253.345.424-40"	,"Jaime Eloísio Fonseca","Rua 
 ("	200.294.510-28"	, "Fernanda Prim",	 "Rua Itapeva",	"48996662538"	, "ferrprim@hotmail.com");
 
 
-insert into alunos values("	2014101001"	,"	253.345.424-40","	48991289028",	"Eduardo Fonseca ",	"Rua Leonel Pereira"	, "edu_fons@gmail.com"	, "MATUTINO",	"NÃO",	"SIM"),
+insert into aluno values("	2014101001"	,"	253.345.424-40","	48991289028",	"Eduardo Fonseca ",	"Rua Leonel Pereira"	, "edu_fons@gmail.com"	, "MATUTINO",	"NÃO",	"SIM"),
 ("	2014101002"	,"	534.567.876-23","	48996284728",	"Joaquim Medeiros",	"Rua Itapiranga"	, "jocamede@hotmail.com"	, "MATUTINO",	"NÃO",	"SIM"),
 ("	2014101003"	,"	436.658.126-82","	48984759928",	"Gabriela Alencar",	"Rua Laércio Costa"	, "gabncar@gmail.com"	, "MATUTINO",	"NÃO",	"NÃO"),
 ("	2014101004"	,"	725.265.637-56","	48984592042",	"Nairon de Almeida",	"Rua Luis Pasteur"	, "nailin@gmail.com"	, "MATUTINO",	"NÃO",	"SIM"),
