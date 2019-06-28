@@ -1,11 +1,11 @@
-create table responsavel (
+create table resp (
 cpf_resp varchar (14) PRIMARY KEY,
 nome_resp varchar(30),
 endereco_resp varchar(30),
 telefone_resp varchar(11),
 email_resp varchar(40));
 
-create table alunos (
+create table aluno (
 matricula varchar(10) PRIMARY KEY,
 cpf_resp varchar(14),
 telefone_resp varchar(11),
@@ -15,8 +15,8 @@ email_aluno varchar(20),
 periodo enum("MATUTINO","VESPERTINO","INTEGRAL"),
 cursando enum("SIM", "NÃO"),
 transp_publico enum("SIM", "NÃO"),
-FOREIGN KEY (cpf_resp) REFERENCES responsavel(cpf_resp)
-ON DELETE CASCADE
+FOREIGN KEY (cpf_resp) REFERENCES resp(cpf_resp),
+ON DELETE CASCADE,
 ON UPDATE CASCADE);
 
 create table funcionario (
