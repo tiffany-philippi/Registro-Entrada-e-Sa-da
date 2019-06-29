@@ -89,7 +89,7 @@ public class AlunoRepository {
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
-			System.out.println("Responsável alterado.");
+			System.out.println("Aluno alterado.");
 			
 		} catch (SQLException e1) {
 			e1.printStackTrace();
