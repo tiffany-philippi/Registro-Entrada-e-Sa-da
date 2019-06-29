@@ -52,5 +52,6 @@ create table prontuario (
 cod_pront int auto_increment PRIMARY KEY,
 matricula varchar(10),
 passagem varchar(7),
-data_pront datetime,
+data_pront date,
+time_pront time,
 FOREIGN KEY (matricula) REFERENCES alunos (matricula));
