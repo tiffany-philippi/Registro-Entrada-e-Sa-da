@@ -18,7 +18,6 @@ public class RegistroRepository {
 		try (Connection conn = ConexaoBD.getConexao()) {
 			Statement stmtInsert = conn.createStatement();
 			stmtInsert.executeUpdate(sql);
-			System.out.println("Registro inserido.");
 		} catch (SQLException e) {
 			throw new RepositoryException(e);
 		}
@@ -65,7 +64,6 @@ public class RegistroRepository {
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
-			System.out.println("Registro excluído.");
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}

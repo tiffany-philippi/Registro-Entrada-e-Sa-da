@@ -58,6 +58,14 @@ public class ResponsavelView extends JFrame {
 		contentPane.add(btnRemover);
 		
 		JButton btnNewButton = new JButton("Inserir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				RespCadastroView respCd = new RespCadastroView();
+				
+				respCd.setVisible(true);
+			}
+		});
 		btnNewButton.setBounds(165, 163, 89, 23);
 		contentPane.add(btnNewButton);
 	}
