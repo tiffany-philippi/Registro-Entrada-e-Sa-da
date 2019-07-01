@@ -15,8 +15,8 @@ email_aluno varchar(50),
 periodo varchar(15),
 cursando varchar(3),
 transp_publico varchar(3),
-FOREIGN KEY (cpf_resp) REFERENCES resp(cpf_resp),
-ON DELETE CASCADE,
+FOREIGN KEY (cpf_resp) REFERENCES resp(cpf_resp)
+ON DELETE CASCADE
 ON UPDATE CASCADE);
 
 create table funcionario (
