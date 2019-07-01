@@ -14,27 +14,33 @@ public class Responsavel {
 	public String getNomeResp () {
 		return nomeResp;
 	}
-	public void setNomeResp(String nomeResp) {
-		this.nomeResp = nomeResp;
+	public String setNomeResp(String nomeResp) {
+		return this.nomeResp = nomeResp;
 	}
 
 	public String getEnderecoResp () {
 		return enderecoResp;
 	}
-	public void setEnderecoResp(String enderecoResp) {
-		this.enderecoResp = enderecoResp;
+	public String setEnderecoResp(String enderecoResp) {
+		return this.enderecoResp = enderecoResp;
+	}
+	public String setCpfResp(String cpfResp) {
+		return this.cpfResp = cpfResp;
+	}
+	public String setTelefone(String telefone) {
+		return this.telefone = telefone;
 	}
 	public String getFoneResp () {
 		return telefone;
 	}
-	public void setFoneResp(String telefone) {
-		this.telefone = telefone;
+	public String setFoneResp(String telefone) {
+		return this.telefone = telefone;
 	}
 	public String getEmailResp () {
 		return emailResp;
 	}
-	public void setEmailResp(String emailResp) {
-		this.emailResp = emailResp;
+	public String setEmailResp(String emailResp) {
+		return this.emailResp = emailResp;
 	}
 	
 	

@@ -65,19 +65,19 @@ public class ResponsavelRepository {
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
 	public void atualizar(Responsavel responsavel) throws SQLException {
-		String sql = "UPDATE resp SET nome_resp = '" + responsavel.getNomeResp() + "',telefone_resp = '" + responsavel.getFoneResp() + "'email_resp = '" + responsavel.getEmailResp() + "' WHERE cpf_resp = '" + responsavel.getCPFResp() + "';";
+		String sql = "UPDATE resp SET  nome_resp = " + "','" + responsavel.getNomeResp() + "', endereco_resp = '" + responsavel.getEnderecoResp() + "', telefone_resp = '" + responsavel.getFoneResp() + "', email_resp = '" + responsavel.getEmailResp() + "' WHERE cpf_resp = '"+ responsavel.getCPFResp() + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }

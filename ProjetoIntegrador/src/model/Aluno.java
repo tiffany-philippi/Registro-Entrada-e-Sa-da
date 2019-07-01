@@ -11,51 +11,61 @@ public class Aluno {
 	private String periodo;
 	private String cursando;
 	private String transpPublico;
-	
+
+	public String getMatricula() {
+		return matricula;
+	}
+	public String setMatricula(String matricula) {
+		return this.matricula = matricula;
+	}
 	public String getNomeAluno() {
 		return nomeAluno;
 	}
-	public void setNomeAluno(String nomeAluno) {
-		this.nomeAluno = nomeAluno;
+	public String setNomeAluno(String nomeAluno) {
+		return this.nomeAluno = nomeAluno;
 	}
 	public String getEnderecoAluno() {
 		return enderecoAluno;
 	}
-	public void setEnderecoAluno(String enderecoAluno) {
-		this.enderecoAluno = enderecoAluno;
+	public String setEnderecoAluno(String enderecoAluno) {
+		return this.enderecoAluno = enderecoAluno;
 	}
 	public String getEmailAluno() {
 		return emailAluno;
 	}
-	public void setEmailAluno(String emailAluno) {
-		this.emailAluno = emailAluno;
+	public String setEmailAluno(String emailAluno) {
+		return this.emailAluno = emailAluno;
 	}
 	public String getPeriodo() {
 		return periodo;
 	}
-	public void setPeriodo(String periodo) {
-		this.periodo = periodo;
+	public String setPeriodo(String periodo) {
+		return this.periodo = periodo;
 	}
 	public String getCursando() {
 		return cursando;
 	}
-	public void setCursando(String cursando) {
-		this.cursando = cursando;
+	public String setCursando(String cursando) {
+		return this.cursando = cursando;
 	}
 	public String getTranspPublico() {
 		return transpPublico;
 	}
-	public void setTranspPublico(String transpPublico) {
-		this.transpPublico = transpPublico;
-	}
-	public String getMatricula() {
-		return matricula;
+	public String setTranspPublico(String transpPublico) {
+		return this.transpPublico = transpPublico;
 	}
 	public String getCpfResp() {
 		return cpfResp;
 	}
+	public String setCpfResp(String cpfResp) {
+		return this.cpfResp = cpfResp;
+	}
 	public String getTelefoneResp() {
 		return telefoneResp;
 	}
+	public String setTelefoneResp(String telefoneResp) {
+		return this.telefoneResp = telefoneResp;
+	}
+}
 	
 	

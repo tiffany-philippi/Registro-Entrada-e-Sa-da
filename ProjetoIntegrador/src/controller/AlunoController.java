@@ -24,19 +24,18 @@ public class AlunoController {
 	}
 
 
-	public void alterar(String matricula, String turmaAtual, String periodoAtual) {
+	public void alterar(Aluno aluno) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		this.repository.atualizar(aluno);
 	}
 
-	public Aluno consultar(Aluno matricula) {
+	public void consultar(String matricula){
 		// TODO Auto-generated method stub
-		
 	}
 
-	public void excluir(String matricula) {
+	public void excluir(String matricula) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		this.repository.remover(matricula);
 	}
 
 }

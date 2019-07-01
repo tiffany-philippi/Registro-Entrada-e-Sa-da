@@ -13,8 +13,8 @@ public class AlunoRepository {
 
 	public void persistir(Aluno aluno) throws SQLException {
 		String sql = "INSERT INTO aluno VALUES ('"+ aluno.getMatricula() + "','" + aluno.getCpfResp() + "','" + 
-					aluno.getTelefoneResp() + "','" + aluno.getNomeAluno() + "','" + aluno.getEnderecoAluno() + aluno.getEmailAluno() + 
-					aluno.getPeriodo() + aluno.getCursando() + aluno.getTranspPublico() + "','" + "','" + "','" + "','" + "');";
+					aluno.getTelefoneResp() + "','" + aluno.getNomeAluno() + "','" + aluno.getEnderecoAluno() + "','" + aluno.getEmailAluno() + 
+					 "','" + aluno.getPeriodo() + "','" + aluno.getCursando() + "','"+  aluno.getTranspPublico() + "');";
 //		System.out.println(sql);
 		try (Connection conn = ConexaoBD.getConexao()) {
 			Statement stmtInsert = conn.createStatement();
@@ -34,7 +34,6 @@ public class AlunoRepository {
 		stmt = conn.createStatement();
 		resultSet = stmt.executeQuery(sql);
 		
-		String matricula = null;
 		String cpfResp = null;
 		String telefoneResp = null;
 		String nomeAluno = null;
@@ -70,47 +69,27 @@ public class AlunoRepository {
 		
 	}
 	
-	public void remover(String cpfResp) throws SQLException {
+	public void remover(String matricula) throws SQLException {
 		
-		String sql = "DELETE FROM aluno WHERE cpf_resp = '" + cpfResp + "';";
+		String sql = "DELETE FROM aluno WHERE matricula = '" + matricula + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
-			System.out.println("Responsável removido.");
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 	}
 	
-	public void atualizarRespNome(Aluno aluno) throws SQLException {
-		String sql = "UPDATE aluno SET nome_resp = '" + aluno.getMatricula() + "' WHERE nome_aluno = '" + aluno.getNomeAluno() + "';";
+	public void atualizar(Aluno aluno) throws SQLException {
+		String sql = "UPDATE aluno SET nome_aluno = '" + aluno.getNomeAluno() + "', endereco_aluno = '" + aluno.getEnderecoAluno() +
+				"',email_aluno = '" + aluno.getEmailAluno() + "', periodo = '" + aluno.getPeriodo() + "', cursando = '" + aluno.getCursando() + 
+				"', transp_publico = '"+  aluno.getTranspPublico() + "' WHERE matricula = '"+ aluno.getMatricula() + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
-			System.out.println("Aluno alterado.");
 			
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-	}
-	public void atualizarRespTelefone(Responsavel aluno) throws SQLException {
-		String sql = "UPDATE aluno SET telefone_resp = '" + aluno.getFoneResp() + "' WHERE cpf_resp = '" + aluno.getCPFResp() + "';";
-		Statement stmtUpdate;
-		try (Connection conn = ConexaoBD.getConexao()){
-			stmtUpdate = conn.createStatement();
-			stmtUpdate.executeUpdate(sql);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-	}
-	public void atualizarRespEmail(Responsavel aluno) throws SQLException {
-		String sql = "UPDATE aluno SET email_resp = '" + aluno.getEmailResp() + "' WHERE cpf_resp = '" + aluno.getCPFResp() + "';";
-		Statement stmtUpdate;
-		try (Connection conn = ConexaoBD.getConexao()){
-			stmtUpdate = conn.createStatement();
-			stmtUpdate.executeUpdate(sql);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
