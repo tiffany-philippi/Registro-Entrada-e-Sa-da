@@ -47,10 +47,6 @@ public class MainView extends JFrame {
 		lblBemVindo.setBounds(167, 57, 123, 14);
 		contentPane.add(lblBemVindo);
 		
-		JLabel lblEscolhaUmaAo = new JLabel("Escolha um item");
-		lblEscolhaUmaAo.setBounds(177, 84, 134, 14);
-		contentPane.add(lblEscolhaUmaAo);
-		
 		JButton btnRegistro = new JButton("Registro ");
 		btnRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -60,31 +56,27 @@ public class MainView extends JFrame {
 				RegistroView.setVisible(true);
 			}
 		});
-		btnRegistro.setBounds(153, 134, 123, 23);
+		btnRegistro.setBounds(152, 112, 123, 23);
 		contentPane.add(btnRegistro);
 		
 		JButton btnResp = new JButton("Respons\u00E1vel");
-		btnResp.setBounds(153, 168, 123, 23);
+		btnResp.setBounds(152, 146, 123, 23);
 		contentPane.add(btnResp);
 		
 		btnResp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				ResponsavelView ResponsavelView = new ResponsavelView();
-				
 				ResponsavelView.setVisible(true);
 			}
 		});
 		
 		JButton btnaluno = new JButton("Aluno");
-		btnaluno.setBounds(153, 202, 123, 23);
+		btnaluno.setBounds(152, 180, 123, 23);
 		contentPane.add(btnaluno);
 		
 		btnaluno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				AlunoView AlunoView = new AlunoView();
-				
 				AlunoView.setVisible(true);
 			}
 		});

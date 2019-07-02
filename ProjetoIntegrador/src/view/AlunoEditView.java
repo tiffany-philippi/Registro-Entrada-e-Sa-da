@@ -24,8 +24,13 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.AbstractListModel;
 import javax.swing.JProgressBar;
+import java.awt.Color;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
 
-public class CadastroAlunoView extends JFrame {
+public class AlunoEditView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtaMat;
@@ -35,8 +40,6 @@ public class CadastroAlunoView extends JFrame {
 	private JTextField txtCursando;
 	private JTextField txtTranspp;
 	private JTextField txtPeriodo;
-	private JTextField txtcpfResp;
-	private JTextField txtFoneResp;
 	private String matricula;
 	private String cpfResp;
 	private String foneResp;
@@ -46,6 +49,7 @@ public class CadastroAlunoView extends JFrame {
 	private String cursando;
 	private String periodo;
 	private String transpp;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -54,7 +58,7 @@ public class CadastroAlunoView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastroAlunoView frame = new CadastroAlunoView();
+					AlunoEditView frame = new AlunoEditView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,135 +70,113 @@ public class CadastroAlunoView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CadastroAlunoView() {
+	public AlunoEditView() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 727, 318);
+		setBounds(100, 100, 741, 432);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblPreenchaOsDados = new JLabel("Preencha os dados do aluno:");
+		JLabel lblPreenchaOsDados = new JLabel("Preencha todos os campos para atualizar corretamente.");
+		lblPreenchaOsDados.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPreenchaOsDados.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblPreenchaOsDados.setBounds(134, 21, 216, 14);
+		lblPreenchaOsDados.setBounds(116, 11, 517, 14);
 		contentPane.add(lblPreenchaOsDados);
 				
 		JLabel lblCpf = new JLabel("Matr\u00EDcula:");
 		lblCpf.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblCpf.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCpf.setBounds(20, 58, 98, 14);
+		lblCpf.setBounds(10, 60, 98, 14);
 		contentPane.add(lblCpf);
 		
 		txtaMat = new JTextField();
-		txtaMat.setBounds(128, 56, 222, 20);
+		txtaMat.setBounds(118, 58, 222, 20);
 		contentPane.add(txtaMat);
 		txtaMat.setColumns(10);
+		
+		JLabel lblAviso = new JLabel("AVISO: O campo matr\u00EDcula deve permacener igual ao atual, n\u00E3o podendo ser alterado.");
+		lblAviso.setForeground(new Color(165, 42, 42));
+		lblAviso.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 11));
+		lblAviso.setBounds(116, 81, 494, 23);
+		contentPane.add(lblAviso);
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNome.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNome.setBounds(30, 83, 88, 14);
+		lblNome.setBounds(21, 143, 88, 14);
 		contentPane.add(lblNome);
 		
 		txtNomeAluno = new JTextField();
 		txtNomeAluno.setColumns(10);
-		txtNomeAluno.setBounds(128, 81, 222, 20);
+		txtNomeAluno.setBounds(119, 141, 222, 20);
 		contentPane.add(txtNomeAluno);
 		
 		JLabel lblEndereo = new JLabel("Endere\u00E7o:");
 		lblEndereo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEndereo.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEndereo.setBounds(20, 108, 98, 14);
+		lblEndereo.setBounds(11, 168, 98, 14);
 		contentPane.add(lblEndereo);
 		
 		txtEndAluno = new JTextField();
 		txtEndAluno.setColumns(10);
-		txtEndAluno.setBounds(128, 106, 222, 20);
+		txtEndAluno.setBounds(119, 166, 222, 20);
 		contentPane.add(txtEndAluno);
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEmail.setBounds(40, 133, 78, 14);
+		lblEmail.setBounds(31, 193, 78, 14);
 		contentPane.add(lblEmail);
 		
 		txtEmailAluno = new JTextField();
 		txtEmailAluno.setColumns(10);
-		txtEmailAluno.setBounds(128, 131, 222, 20);
+		txtEmailAluno.setBounds(119, 191, 222, 20);
 		contentPane.add(txtEmailAluno);
 		
 		JLabel lblCursando = new JLabel("Cursando:");
 		lblCursando.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblCursando.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblCursando.setBounds(40, 183, 78, 14);
+		lblCursando.setBounds(381, 166, 78, 14);
 		contentPane.add(lblCursando);
 		
 		txtCursando = new JTextField();
 		txtCursando.setColumns(10);
-		txtCursando.setBounds(128, 181, 222, 20);
+		txtCursando.setBounds(469, 164, 222, 20);
 		contentPane.add(txtCursando);
 		
 		JLabel lblPeríodo = new JLabel("Per\u00EDodo:");
 		lblPeríodo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPeríodo.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblPeríodo.setBounds(40, 158, 78, 14);
+		lblPeríodo.setBounds(381, 141, 78, 14);
 		contentPane.add(lblPeríodo);
 		
 		txtPeriodo = new JTextField();
 		txtPeriodo.setColumns(10);
-		txtPeriodo.setBounds(128, 156, 222, 20);
+		txtPeriodo.setBounds(469, 139, 222, 20);
 		contentPane.add(txtPeriodo);
 		
 		JLabel lblTransportePblico = new JLabel("Transp. p\u00FAblico:");
 		lblTransportePblico.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTransportePblico.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTransportePblico.setBounds(20, 208, 98, 14);
+		lblTransportePblico.setBounds(361, 191, 98, 14);
 		contentPane.add(lblTransportePblico);
 		
 		txtTranspp = new JTextField();
 		txtTranspp.setColumns(10);
-		txtTranspp.setBounds(128, 206, 222, 20);
+		txtTranspp.setBounds(469, 189, 222, 20);
 		contentPane.add(txtTranspp);
 		
-		JLabel lblPreenchaOsDados_1 = new JLabel("Preencha os dados do respons\u00E1vel:");
-		lblPreenchaOsDados_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblPreenchaOsDados_1.setBounds(445, 95, 243, 14);
-		contentPane.add(lblPreenchaOsDados_1);
 		
-		JLabel lblCpf_1 = new JLabel("CPF:");
-		lblCpf_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCpf_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblCpf_1.setBounds(348, 129, 98, 14);
-		contentPane.add(lblCpf_1);
-		
-		txtcpfResp = new JTextField();
-		txtcpfResp.setColumns(10);
-		txtcpfResp.setBounds(456, 127, 222, 20);
-		contentPane.add(txtcpfResp);
-		
-		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblTelefone.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTelefone.setBounds(360, 152, 88, 14);
-		contentPane.add(lblTelefone);
-		
-		txtFoneResp = new JTextField();
-		txtFoneResp.setColumns(10);
-		txtFoneResp.setBounds(456, 152, 222, 20);
-		contentPane.add(txtFoneResp);
-		
-		
-		JButton btnInserir = new JButton("Inserir");
-		btnInserir.addMouseListener(new MouseAdapter() {
+		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-			CadastroAlunoView frame = new CadastroAlunoView();
+			AlunoEditView frame = new AlunoEditView();
 			
 			Aluno aluno = new Aluno();
 			
 			matricula = aluno.setMatricula(txtaMat.getText());
-			cpfResp = aluno.setCpfResp(txtcpfResp.getText());
-			foneResp = aluno.setTelefoneResp(txtFoneResp.getText());
 			nome = aluno.setNomeAluno(txtNomeAluno.getText());
 			endereco = aluno.setEnderecoAluno(txtEndAluno.getText());
 			email = aluno.setEmailAluno(txtEmailAluno.getText());
@@ -205,8 +187,8 @@ public class CadastroAlunoView extends JFrame {
 			AlunoController contr = new AlunoController();
 			
 			try {
-				contr.persistir(aluno);					
-				btnInserir.addActionListener(new ActionListener() {
+				contr.alterar(aluno);					
+				btnAlterar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						MessageSucess msgSucesso = new MessageSucess();
 						msgSucesso.setVisible(true);
@@ -214,7 +196,7 @@ public class CadastroAlunoView extends JFrame {
 				});
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				btnInserir.addActionListener(new ActionListener() {
+				btnAlterar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						MessageError msgError = new MessageError();
 						msgError.setVisible(true);
@@ -225,8 +207,8 @@ public class CadastroAlunoView extends JFrame {
 			}
 		});		
 	
-		btnInserir.setBounds(602, 245, 89, 23);
-		contentPane.add(btnInserir);
+		btnAlterar.setBounds(602, 245, 89, 23);
+		contentPane.add(btnAlterar);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -236,6 +218,45 @@ public class CadastroAlunoView extends JFrame {
 		});
 		btnVoltar.setBounds(503, 245, 89, 23);
 		contentPane.add(btnVoltar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 300, 725, 45);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		table.setBackground(new Color(240, 255, 240));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"Matr\u00EDcula", "CPF respons.", "Fone respons.", "Nome", "Endere\u00E7o", "Email", "Per\u00EDodo", "Cursando", "Transp. p\u00FAblico"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		scrollPane.setViewportView(table);
+		
+		JButton btnVer = new JButton("Ver altera\u00E7\u00F5es");
+		btnVer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnVer.setBackground(new Color(240, 255, 240));
+		btnVer.setBounds(576, 359, 139, 23);
+		contentPane.add(btnVer);
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(105, 105, 105));
+		separator.setBackground(new Color(169, 169, 169));
+		separator.setBounds(0, 287, 725, 2);
+		contentPane.add(separator);
 		
 
 	}

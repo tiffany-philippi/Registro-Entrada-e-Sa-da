@@ -19,23 +19,28 @@ public class TelaInicialView extends JFrame {
 	 */
 	
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaInicial window = new TelaInicial();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	public TelaInicialView() {
-			initialize();
-			AlunoController alunoController = AlunoController();
-			this.cadastroAluno = new CadastroAlunoView(alunoController);
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					TelaInicial window = new TelaInicial();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+	
+	
+	
+//	public TelaInicialView() {
+//			initialize();
+//			AlunoController alunoController = AlunoController();
+//			this.cadastroAluno = new CadastroAlunoView(alunoController);
+//	}
+
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */

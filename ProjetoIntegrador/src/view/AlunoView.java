@@ -42,22 +42,42 @@ public class AlunoView extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AlunoConsultView alunoConsult = new AlunoConsultView();
+				alunoConsult.setVisible(true);
+			}
+		});
 		btnConsultar.setBounds(165, 60, 89, 23);
 		contentPane.add(btnConsultar);
 		
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				AlunoEditView alunoEdit = new AlunoEditView();
+				alunoEdit.setVisible(true);
 			}
 		});
 		btnEditar.setBounds(165, 94, 89, 23);
 		contentPane.add(btnEditar);
 		
 		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AlunoRemovView alunoRemov = new AlunoRemovView();
+				alunoRemov.setVisible(true);
+			}
+		});
 		btnRemover.setBounds(165, 129, 89, 23);
 		contentPane.add(btnRemover);
 		
 		JButton btnNewButton = new JButton("Inserir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CadastroAlunoView alunoInserir = new CadastroAlunoView();
+				alunoInserir.setVisible(true);
+			}
+		});
 		btnNewButton.setBounds(165, 163, 89, 23);
 		contentPane.add(btnNewButton);
 	}

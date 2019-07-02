@@ -6,8 +6,7 @@ import model.Aluno;
 import repository.AlunoRepository;
 
 public class AlunoController {
-	
-	private AlunoRepository repository;
+		private AlunoRepository repository;
 	
 	public AlunoController() {
 		this.repository = new AlunoRepository();
@@ -24,18 +23,20 @@ public class AlunoController {
 	}
 
 
-	public void alterar(Aluno aluno) throws SQLException {
-		// TODO Auto-generated method stub
-		this.repository.atualizar(aluno);
+	public void alterar(String matricula, String periodoAtual) throws SQLException {
+		this.repository.atualizar(matricula, periodoAtual);
+		
 	}
 
-	public void consultar(String matricula){
-		// TODO Auto-generated method stub
+	public Aluno consultar(String matricula) {
+		return this.repository.consultar(matricula);
+		
 	}
 
 	public void excluir(String matricula) throws SQLException {
-		// TODO Auto-generated method stub
 		this.repository.remover(matricula);
+		
 	}
 
+	
 }

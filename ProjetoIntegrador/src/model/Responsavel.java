@@ -1,47 +1,29 @@
 package model;
 
-public class Responsavel {
+public class Responsavel extends Pessoa {
 	
 	private String cpfResp;
-	private String nomeResp;
-	private String enderecoResp;
 	private String telefone;
-	private String emailResp;
+	private String nomeResp;
+	
+	public Responsavel(String cpfResp, String nome, String endereco, String telefoneResp, String email) {
+		super(nome, endereco, email);
+
+		this.cpfResp = cpfResp;
+		this.telefone = telefoneResp;
+		this.nomeResp = nome;
+	}
 
 	public String getCPFResp () {
 		return cpfResp;
 	}
-	public String getNomeResp () {
-		return nomeResp;
-	}
-	public String setNomeResp(String nomeResp) {
-		return this.nomeResp = nomeResp;
-	}
-
-	public String getEnderecoResp () {
-		return enderecoResp;
-	}
-	public String setEnderecoResp(String enderecoResp) {
-		return this.enderecoResp = enderecoResp;
-	}
-	public String setCpfResp(String cpfResp) {
-		return this.cpfResp = cpfResp;
-	}
-	public String setTelefone(String telefone) {
-		return this.telefone = telefone;
-	}
 	public String getFoneResp () {
 		return telefone;
 	}
-	public String setFoneResp(String telefone) {
-		return this.telefone = telefone;
+	public void setNomeResp(String nome) {
+		this.nomeResp = nome;
 	}
-	public String getEmailResp () {
-		return emailResp;
+	public String getNomeResp () {
+		return nomeResp;
 	}
-	public String setEmailResp(String emailResp) {
-		return this.emailResp = emailResp;
-	}
-	
-	
 }

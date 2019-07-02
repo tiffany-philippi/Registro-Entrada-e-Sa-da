@@ -13,11 +13,12 @@ import model.Registro;
 public class RegistroRepository {
 
 	public void persistir(Registro registro) throws SQLException {
-		String sql = "INSERT INTO prontuario VALUES ('null, '"+ registro.getMatricula() + "','" + registro.getPassagem() + "','" + registro.getDataPront() + "','" + registro.getTimePront() + "');";
+		String sql = "INSERT INTO prontuario (matricula, passagem, data_pront, time_pront)  VALUES ('"+ registro.getMatricula() + "','" + registro.getPassagem() + "','" + registro.getDataPront() + "','" + registro.getTimePront() + "');";
 //		System.out.println(sql);
 		try (Connection conn = ConexaoBD.getConexao()) {
 			Statement stmtInsert = conn.createStatement();
 			stmtInsert.executeUpdate(sql);
+			System.out.println("Registro inserido.");
 		} catch (SQLException e) {
 			throw new RepositoryException(e);
 		}
@@ -36,17 +37,23 @@ public class RegistroRepository {
 		String codPront = null;
 		String matricula = null;
 		String passagem = null;
-		Date dataPront = null;
-		Time timePront = null;
+//		Date dataPront = null;
+//		Time timePront = null;
+		String dataPront = null;
+		String timePront = null;
 		
 			while(resultSet.next()) {
 				codPront = resultSet.getString("cod_pront");
 				matricula = resultSet.getString("matricula");
 				passagem = resultSet.getString("passagem");
-				dataPront = resultSet.getDate("date_pront");
-				timePront = resultSet.getTime("time_pront");
+//				dataPront = resultSet.getDate("date_pront");
+//				timePront = resultSet.getTime("time_pront");
+				
+				dataPront = resultSet.getString("data_pront");
+				timePront = resultSet.getString("time_pront");
 
-				reg = new Registro();
+				reg = new Registro(codPront, matricula, passagem, dataPront, timePront);
+				
 				System.out.println("Código: " + codPront + "\nMatrícula: " + matricula + 
 						"\nTipo de passagem: " + passagem + "\nData: " + dataPront 
 						+ "\nHora: " + timePront +"\n");
@@ -64,6 +71,7 @@ public class RegistroRepository {
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
+			System.out.println("Registro excluído.");
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}

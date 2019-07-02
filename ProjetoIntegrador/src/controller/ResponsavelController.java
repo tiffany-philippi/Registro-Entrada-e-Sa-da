@@ -30,12 +30,8 @@ public class ResponsavelController {
 		this.repository.remover(cpfResp);
 	}
 
-	public void atualizar(Responsavel responsavel) throws SQLException {
-		this.repository.atualizar(responsavel);
-	}
-
-	
-	 
-	
+	public void atualizar(String cpfResp, String nomeAtual) throws SQLException {
+		this.repository.atualizar(nomeAtual, cpfResp);
+	}	
 	
 }

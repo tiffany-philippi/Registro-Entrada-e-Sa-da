@@ -6,14 +6,10 @@ public class Pessoa {
 	private String endereco;
 	private String email;
 	
-	protected void setEndereco(String endereco) {
+	public Pessoa (String nome, String endereco, String email) {
+		this.setNomeResp(nome);
 		this.endereco = endereco;
-	}
-	protected void setEmail(String email) {
 		this.email = email;
-	}
-	protected void setNome(String nome) {
-		this.nome = nome;
 	}
 	public String getNome() {
 		return getNomeResp();
@@ -26,5 +22,8 @@ public class Pessoa {
 	}
 	public String getNomeResp() {
 		return nome;
+	}
+	public void setNomeResp(String nome) {
+		this.nome = nome;
 	}
 } 

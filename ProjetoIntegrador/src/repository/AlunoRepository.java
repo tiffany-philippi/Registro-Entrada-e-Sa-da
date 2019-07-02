@@ -7,16 +7,19 @@ import java.sql.Statement;
 
 import exception.RepositoryException;
 import model.Aluno;
+import model.Periodo;
 import model.Responsavel;
+import model.SimNao;
 
 public class AlunoRepository {
-
+	
 	public void persistir(Aluno aluno) throws SQLException {
-		String sql = "INSERT INTO aluno VALUES ('"+ aluno.getMatricula() + "','" + aluno.getCpfResp() + "','" + 
-					aluno.getTelefoneResp() + "','" + aluno.getNomeAluno() + "','" + aluno.getEnderecoAluno() + "','" + aluno.getEmailAluno() + 
-					 "','" + aluno.getPeriodo() + "','" + aluno.getCursando() + "','"+  aluno.getTranspPublico() + "');";
-//		System.out.println(sql);
-		try (Connection conn = ConexaoBD.getConexao()) {
+		Connection conn = ConexaoBD.getConexao();
+		String sql = "INSERT INTO aluno VALUES ('" + aluno.getMatricula() + "','" + aluno.getCpf_resp() + "','" + 
+				aluno.getTelefone_resp() + "','" + aluno.getNome() + "','" + aluno.getEndereco() + "','" + aluno.getEmail() + "','" +
+				aluno.getPeriodo() + "','" + aluno.getCursando() + "','" + aluno.getTransPublico() + "');";
+
+		try {
 			Statement stmtInsert = conn.createStatement();
 			stmtInsert.executeUpdate(sql);
 		} catch (SQLException e) {
@@ -34,31 +37,68 @@ public class AlunoRepository {
 		stmt = conn.createStatement();
 		resultSet = stmt.executeQuery(sql);
 		
-		String cpfResp = null;
-		String telefoneResp = null;
-		String nomeAluno = null;
-		String enderecoAluno = null;
-		String emailAluno = null;
-		String periodo = null;
-		String cursando = null;
-		String transpPublico = null;
+		String matriculaAluno = null;
+		String cpf_resp = null;
+		String telefone_resp = null;	
+		String nome_aluno = null;	
+		String endereco_aluno = null;	
+		String email_aluno = null;	
+		String periodoAluno = null;
+		Periodo periodo = null;
+		String cursandoAluno = null;
+		SimNao cursando = null;
+		String transp_publicoAluno = null;
+		SimNao transp_public = null;
 		
 			while(resultSet.next()) {
-				matricula = resultSet.getString("matricula");
-				cpfResp = resultSet.getString("cpf_resp");
-				telefoneResp = resultSet.getString("telefone_resp");
-				nomeAluno = resultSet.getString("nome_aluno");
-				enderecoAluno = resultSet.getString("endereco_aluno");
-				emailAluno = resultSet.getString("email_aluno");
-				periodo = resultSet.getString("cursando");
-				cursando = resultSet.getString("periodo");
-				transpPublico = resultSet.getString("transp_publico");
+				matriculaAluno = resultSet.getString("matricula");
+				cpf_resp = resultSet.getString("cpf_resp");
+				telefone_resp = resultSet.getString("telefone_resp");
+				nome_aluno = resultSet.getString("nome_aluno");
+				endereco_aluno = resultSet.getString("endereco_aluno");
+				email_aluno = resultSet.getString("email_aluno");
+				periodoAluno = resultSet.getString("periodo");
+				cursandoAluno = resultSet.getString("cursando");
+				transp_publicoAluno = resultSet.getString("transp_publico");
 
-				aluno = new Aluno();
-				System.out.println("Matrícula: " + matricula + "\nCPF do responsável: " + cpfResp + 
-						"\nTelefone do responsável: " + telefoneResp + "\nNome do aluno: " + nomeAluno + "\nEndereço: " + enderecoAluno 
-						+ "\nEmail: " + emailAluno +"\nPeríodo: " + periodo + "\nCursando: " + cursando + 
-						"\nTransporte público: " + transpPublico +"\n");
+				switch (periodoAluno) {
+					case "MATUTINO": 
+						periodo = Periodo.MATUTINO; 
+						break;
+					case "VESPERTINO": 
+						periodo = Periodo.VESPERTINO; 
+						break;
+					case "INTEGRAL": 
+						periodo = Periodo.INTEGRAL; 
+						break;
+					default: 
+						periodo = null; 				
+				} 
+				
+				switch (cursandoAluno) {
+					case "SIM": 
+						cursando = SimNao.SIM; 
+						break;
+					case "NÃO": 
+						cursando = SimNao.NÃO; 
+						break;
+					default: 
+						cursando = null;
+				}
+				
+				switch (transp_publicoAluno) {
+					case "SIM": 
+						transp_public = SimNao.SIM; 
+						break;
+					case "NÃO": 
+						transp_public = SimNao.NÃO; 
+						break;
+					default: 
+						transp_public = null;
+				}
+						
+				aluno =  new Aluno(matriculaAluno, cpf_resp, telefone_resp, nome_aluno, endereco_aluno, email_aluno, periodo, cursando, transp_public );
+						
 			}
 			
 		} catch (SQLException e) {
@@ -69,29 +109,31 @@ public class AlunoRepository {
 		
 	}
 	
+	
+	public void atualizar(String matricula, String periodoAtual) throws SQLException {
+		String sqlup = "UPDATE aluno SET periodo = '"+ periodoAtual + "'  WHERE matricula = '" + matricula + "';";
+		Statement stmtUpdate;
+		try (Connection conn = ConexaoBD.getConexao()){
+			stmtUpdate = conn.createStatement();
+			stmtUpdate.executeUpdate(sqlup);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	}
+
 	public void remover(String matricula) throws SQLException {
-		
+		Connection conn = ConexaoBD.getConexao();
 		String sql = "DELETE FROM aluno WHERE matricula = '" + matricula + "';";
 		Statement stmtUpdate;
-		try (Connection conn = ConexaoBD.getConexao()){
+		try {
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
+		
 	}
 	
-	public void atualizar(Aluno aluno) throws SQLException {
-		String sql = "UPDATE aluno SET nome_aluno = '" + aluno.getNomeAluno() + "', endereco_aluno = '" + aluno.getEnderecoAluno() +
-				"',email_aluno = '" + aluno.getEmailAluno() + "', periodo = '" + aluno.getPeriodo() + "', cursando = '" + aluno.getCursando() + 
-				"', transp_publico = '"+  aluno.getTranspPublico() + "' WHERE matricula = '"+ aluno.getMatricula() + "';";
-		Statement stmtUpdate;
-		try (Connection conn = ConexaoBD.getConexao()){
-			stmtUpdate = conn.createStatement();
-			stmtUpdate.executeUpdate(sql);
-			
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-	}
+	
+
 }
