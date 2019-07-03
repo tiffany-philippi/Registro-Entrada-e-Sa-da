@@ -133,6 +133,20 @@ public class AlunoRepository {
 		}
 		
 	}
+
+	public void alterar(Aluno aluno) throws SQLException {
+		Connection conn = ConexaoBD.getConexao();
+		String sql = "UPDATE aluno SET nome_aluno = '" + aluno.getNome() + "', endereco_aluno = '" + aluno.getEndereco() + 
+				"', email_aluno = '" + aluno.getEmail() + "', periodo = '" + aluno.getPeriodo() + "', cursando = '" + aluno.getCursando() + 
+				"', transp_publico = '" + aluno.getTransPublico() + "' WHERE matricula = '" + aluno.getMatricula() + "';";
+		Statement stmtUpdate;
+		try {
+			stmtUpdate = conn.createStatement();
+			stmtUpdate.executeUpdate(sql);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}		
+	}
 	
 	
 

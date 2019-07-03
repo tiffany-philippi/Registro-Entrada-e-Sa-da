@@ -6,14 +6,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
 
 import exception.RepositoryException;
+import model.Passagem;
 import model.Registro;
 
 public class RegistroRepository {
 
 	public void persistir(Registro registro) throws SQLException {
-		String sql = "INSERT INTO prontuario (matricula, passagem, data_pront, time_pront)  VALUES ('"+ registro.getMatricula() + "','" + registro.getPassagem() + "','" + registro.getDataPront() + "','" + registro.getTimePront() + "');";
+	
+		String sql = "INSERT INTO prontuario VALUES (null, '"+ registro.getMatricula() + "','" + registro.getPassagem() + "','" + registro.getDatePront() + "','" + registro.getTimePront() + "');";
 //		System.out.println(sql);
 		try (Connection conn = ConexaoBD.getConexao()) {
 			Statement stmtInsert = conn.createStatement();
@@ -24,49 +32,41 @@ public class RegistroRepository {
 		}
 	}
 	
-	public Registro consultar(String matcons) {
+	public Registro consultar(String matricula) {
 		Statement stmt = null;
 		ResultSet resultSet = null;
-		String sql = "SELECT * FROM prontuario WHERE matricula = '" + matcons + "';";
+		String sql = "SELECT * FROM prontuario WHERE matricula = " + matricula + ";";
 		Registro reg = null;
 		
 		try (Connection conn = ConexaoBD.getConexao()) {
 		stmt = conn.createStatement();
 		resultSet = stmt.executeQuery(sql);
 		
-		String codPront = null;
-		String matricula = null;
-		String passagem = null;
-//		Date dataPront = null;
-//		Time timePront = null;
+		int codPront = 0;
+		Passagem passagem = null;
 		String dataPront = null;
 		String timePront = null;
 		
 			while(resultSet.next()) {
-				codPront = resultSet.getString("cod_pront");
+				codPront = Integer.parseInt(resultSet.getString("cod_pront"));
 				matricula = resultSet.getString("matricula");
-				passagem = resultSet.getString("passagem");
-//				dataPront = resultSet.getDate("date_pront");
-//				timePront = resultSet.getTime("time_pront");
-				
+				passagem = Passagem.valueOf(resultSet.getString("passagem"));
 				dataPront = resultSet.getString("data_pront");
 				timePront = resultSet.getString("time_pront");
-
-				reg = new Registro(codPront, matricula, passagem, dataPront, timePront);
 				
-				System.out.println("Código: " + codPront + "\nMatrícula: " + matricula + 
-						"\nTipo de passagem: " + passagem + "\nData: " + dataPront 
-						+ "\nHora: " + timePront +"\n");
+				reg = new Registro(codPront, matricula, passagem, dataPront, timePront);
 			}
-			
-		} catch (SQLException e) {
-			throw new RepositoryException(e);
+		}
+				catch (SQLException e) {
+					throw new RepositoryException(e);
 		}
 		return reg;
-	}
+	} 
 	
-	public void remover(String matremov) throws SQLException {
-		String sql = "DELETE FROM prontuario WHERE matricula = '" + matremov + "';";
+	
+	
+	public void remover(String codPront) throws SQLException {
+		String sql = "DELETE FROM prontuario WHERE cpd_pront = '" + codPront + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
@@ -76,5 +76,5 @@ public class RegistroRepository {
 			e1.printStackTrace();
 		}
 	}
-
 }
+

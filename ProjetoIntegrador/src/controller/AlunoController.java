@@ -22,13 +22,16 @@ public class AlunoController {
 		this.repository.persistir(aluno);
 	}
 
+	public void atualizar(Aluno aluno) throws SQLException {
+		this.repository.alterar(aluno);
+	}
 
 	public void alterar(String matricula, String periodoAtual) throws SQLException {
 		this.repository.atualizar(matricula, periodoAtual);
 		
 	}
 
-	public Aluno consultar(String matricula) {
+	public Aluno consultar(String matricula) throws SQLException {
 		return this.repository.consultar(matricula);
 		
 	}

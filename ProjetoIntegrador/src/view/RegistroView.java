@@ -42,34 +42,16 @@ public class RegistroView extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnConsultar = new JButton("Consultar");
-		btnConsultar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				RegistroConsultView regConsult = new RegistroConsultView();
-				regConsult.setVisible(true);
-			}
-		});
 		btnConsultar.setBounds(165, 95, 89, 23);
 		contentPane.add(btnConsultar);
 		
 		JButton btnRemover = new JButton("Remover");
-		btnRemover.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				RegistroRemovView regRv = new RegistroRemovView();
-				regRv.setVisible(true);
-			}
-		});
 		btnRemover.setBounds(165, 129, 89, 23);
 		contentPane.add(btnRemover);
 		
-		JButton btnInserir = new JButton("Inserir");
-		btnInserir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				RegistroCadastroView regCd = new RegistroCadastroView();
-				regCd.setVisible(true);
-			}
-		});
-		btnInserir.setBounds(165, 163, 89, 23);
-		contentPane.add(btnInserir);
+		JButton btnNewButton = new JButton("Inserir");
+		btnNewButton.setBounds(165, 163, 89, 23);
+		contentPane.add(btnNewButton);
 	}
 
 }

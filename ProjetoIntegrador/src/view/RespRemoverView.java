@@ -90,8 +90,8 @@ public class RespRemoverView extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 
 				RespRemoverView frame = new RespRemoverView();
-				Responsavel resp = new Responsavel();				
-				cpfResp = resp.setCpfResp(textField.getText());
+				Responsavel resp = new Responsavel(cpfResp, cpfResp, cpfResp, cpfResp, cpfResp);				
+				cpfResp = textField.getText();
 				ResponsavelController contr = new ResponsavelController();
 				
 				try {

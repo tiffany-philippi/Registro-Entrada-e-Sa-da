@@ -1,47 +1,31 @@
 package model;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Registro {
 
 	private int codPront;
 	private String matricula;
-	private String passagem;
+	private Passagem passagem;
 	
-	private String dataPront;
-	private String timePront;
-
-	/*
-	private Date dataPront;
-	private Time timePront;
+	private String data;
+	private String hora;
+		
 	
-	public Registro(String matricula, String passagem, java.util.Date date, Time timePront) {
+	public Registro(String matricula, Passagem str_passagem, String data, String hora) {
 		this.matricula = matricula;
-		this.passagem = passagem;
-		this.dataPront = date;
-		this.timePront = timePront;
+		this.passagem = str_passagem;
+		this.data = data;
+		this.hora = hora;
 	}
 
-	public Registro(String codPront, String matricula, String passagem, Date dataPront, Time timePront) {
+	public Registro(int codPront, String matricula, Passagem passagem, String data, String hora) {
+		this.codPront = codPront;
 		this.matricula = matricula;
 		this.passagem = passagem;
-		this.dataPront = date;
-		this.timePront = timePront;
-	}
-**/
-	public Registro(String matricula, String passagem, String date, String timePront) {
-		this.matricula = matricula;
-		this.passagem = passagem;
-		this.dataPront = date;
-		this.timePront = timePront;
-	}
-
-	public Registro(String codPront, String matricula, String passagem, String date, String timePront) {
-		this.matricula = matricula;
-		this.passagem = passagem;
-		this.dataPront = date;
-		this.timePront = timePront;	
+		this.data = data;
+		this.hora = hora;
 	}
 	
 	public String getMatricula() {
@@ -60,43 +44,27 @@ public class Registro {
 		this.codPront = codPront;
 	}
 
-	public String getPassagem() {
+	public Passagem getPassagem() {
 		return passagem;
 	}
 
-	public void setPassagem(String passagem) {
+	public void setPassagem(Passagem passagem) {
 		this.passagem = passagem;
 	}
 
-//	public Date getDataPront() {
-//		return dataPront;
-//	}
-
-	public String getDataPront() {
-		return dataPront;
+	public String getDatePront() {
+		return data;
 	}
 	
-//	public void setDataPront(Date dataPront) {
-//		this.dataPront = dataPront;
-//	}
-	
-	public void setDataPront(String dataPront) {
-		this.dataPront = dataPront;
+	public void setDataPront(String data) {
+		this.data = data;
 	}
-
-//	public Time getTimePront() {
-//		return timePront;
-//	}
 	
 	public String getTimePront() {
-		return timePront;
+		return hora;
 	}
-
-//	public void setTimePront(Time timePront) {
-//		this.timePront = timePront;
-//	}
 	
-	public void setTimePront(String timePront) {
-		this.timePront = timePront;
+	public void setTimePront(String hora) {
+		this.hora = hora;
 	}
 }

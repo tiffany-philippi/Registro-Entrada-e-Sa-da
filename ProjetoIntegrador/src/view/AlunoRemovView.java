@@ -90,8 +90,7 @@ public class AlunoRemovView extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 
 				AlunoRemovView frame = new AlunoRemovView();
-				Aluno aluno = new Aluno();				
-				matricula = aluno.setCpfResp(textField.getText());
+				matricula = textField.getText();
 				AlunoController contr = new AlunoController();
 				
 				try {

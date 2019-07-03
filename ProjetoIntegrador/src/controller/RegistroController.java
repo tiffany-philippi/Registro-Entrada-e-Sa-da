@@ -26,12 +26,14 @@ private RegistroRepository repository;
 		this.repository.persistir(registro);
 	}
 
-	public Registro consultar(String matcons) {
-		return this.repository.consultar(matcons);
+	public Registro consultar(String matricula) throws SQLException{
+		return this.repository.consultar(matricula);
 	}
 	
-	public void excluir (String matremov) throws SQLException {
-		this.repository.remover(matremov);
+	public void excluir (String codPront) throws SQLException {
+		this.repository.remover(codPront);
 	}
 
 }
+
+

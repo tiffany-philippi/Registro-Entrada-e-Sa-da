@@ -42,44 +42,32 @@ public class ResponsavelView extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnConsultar = new JButton("Consultar");
-		btnConsultar.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-			RespConsultView respConsult = new RespConsultView();
-			respConsult.setVisible(true);
-		}
-	});
 		btnConsultar.setBounds(165, 60, 89, 23);
 		contentPane.add(btnConsultar);
 		
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				RespEditView respEdit = new RespEditView();
-				respEdit.setVisible(true);
 			}
 		});
 		btnEditar.setBounds(165, 94, 89, 23);
 		contentPane.add(btnEditar);
 		
 		JButton btnRemover = new JButton("Remover");
-		btnRemover.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				RespRemoverView respRv = new RespRemoverView();
-				respRv.setVisible(true);
-			}
-		});
 		btnRemover.setBounds(165, 129, 89, 23);
 		contentPane.add(btnRemover);
 		
-		JButton btnInserir = new JButton("Inserir");
-		btnInserir.addActionListener(new ActionListener() {
+		JButton btnNewButton = new JButton("Inserir");
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 				RespCadastroView respCd = new RespCadastroView();
+				
 				respCd.setVisible(true);
 			}
 		});
-		btnInserir.setBounds(165, 163, 89, 23);
-		contentPane.add(btnInserir);
+		btnNewButton.setBounds(165, 163, 89, 23);
+		contentPane.add(btnNewButton);
 	}
 
 }

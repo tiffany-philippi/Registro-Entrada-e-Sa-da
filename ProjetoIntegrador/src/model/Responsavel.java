@@ -3,8 +3,10 @@ package model;
 public class Responsavel extends Pessoa {
 	
 	private String cpfResp;
-	private String telefone;
 	private String nomeResp;
+	private String enderecoResp;
+	private String telefone;
+	private String emailResp;
 	
 	public Responsavel(String cpfResp, String nome, String endereco, String telefoneResp, String email) {
 		super(nome, endereco, email);
@@ -12,6 +14,8 @@ public class Responsavel extends Pessoa {
 		this.cpfResp = cpfResp;
 		this.telefone = telefoneResp;
 		this.nomeResp = nome;
+//		this.enderecoResp = endereco;
+//		this.emailResp = email;
 	}
 
 	public String getCPFResp () {
@@ -26,4 +30,13 @@ public class Responsavel extends Pessoa {
 	public String getNomeResp () {
 		return nomeResp;
 	}
+//	public String getEndResp() {
+//		return enderecoResp;
+//	}
+//	public String getEmailResp() {
+//	return emailResp;
+//}
 }
+
+	
+

@@ -22,7 +22,7 @@ public class ResponsavelController {
 		this.repository.persistir(responsavel);
 	}
 	
-	public Responsavel consultar(String cpfResp) {
+	public Responsavel consultar(String cpfResp) throws SQLException {
 		return this.repository.consultar(cpfResp);
 	}
 	
@@ -33,5 +33,9 @@ public class ResponsavelController {
 	public void atualizar(String cpfResp, String nomeAtual) throws SQLException {
 		this.repository.atualizar(nomeAtual, cpfResp);
 	}	
+
+	
+	 
+	
 	
 }

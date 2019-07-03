@@ -13,9 +13,16 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controller.ResponsavelController;
+import model.Responsavel;
+
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class RespConsultView extends JFrame {
@@ -23,6 +30,9 @@ public class RespConsultView extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtCpf;
 	private JTable table;
+	private String cpf;
+	
+	ResponsavelController respControl = new ResponsavelController();
 
 	/**
 	 * Launch the application.
@@ -91,9 +101,41 @@ public class RespConsultView extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnConsultar = new JButton("Consultar");
-		btnConsultar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
+		btnConsultar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+
+				cpf = txtCpf.getText();
+				Responsavel resp = null;
+				try {
+					resp = respControl.consultar(cpf);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					MessageError msgError = new MessageError();
+					msgError.setVisible(true);
+
+				}
+
+				if (resp != null) {
+					table.setModel(new DefaultTableModel(
+							new Object[][] {
+								{resp.getCPFResp(), resp.getNomeResp(), resp.getEndereco(), resp.getFoneResp(), resp.getEmail()},
+							},
+							new String[] {
+								"CPF", "Nome", "Endere\u00E7o", "Telefone", "Email"
+							}
+						) {
+							boolean[] columnEditables = new boolean[] {
+								false, false, false, false, false
+							};
+							public boolean isCellEditable(int row, int column) {
+								return columnEditables[column];
+							}
+						});
+				} else {
+					
+				}
 			}
 		});
 		btnConsultar.setBounds(414, 60, 89, 23);

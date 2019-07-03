@@ -9,8 +9,10 @@ import javax.swing.border.EmptyBorder;
 
 import controller.RegistroController;
 import controller.ResponsavelController;
+import model.Passagem;
 import model.Registro;
 import model.Responsavel;
+import model.SimNao;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -21,20 +23,25 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class RegistroCadastroView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtMat;
-	private JTextField txtPass;
 	private JTextField txtDate;
 	private JTextField txtTime;
 
 	private String matricula;
-	private String passagem;
+	private Passagem passagem;
 	private String data;
 	private String hora;
+	
+	RegistroController registroControl = new RegistroController();
 	
 	/**
 	 * Launch the application.
@@ -84,12 +91,12 @@ public class RegistroCadastroView extends JFrame {
 		lblPassagem.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblPassagem.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblPassagem.setBounds(31, 121, 68, 14);
-		contentPane.add(lblPassagem);
+		contentPane.add(lblPassagem);		
 		
-		txtPass = new JTextField();
-		txtPass.setColumns(10);
-		txtPass.setBounds(105, 119, 166, 20);
-		contentPane.add(txtPass);
+		JComboBox cbPass = new JComboBox();
+		cbPass.setModel(new DefaultComboBoxModel(Passagem.values()));
+		cbPass.setBounds(105, 118, 166, 20);
+		contentPane.add(cbPass);
 		
 		JLabel lblData = new JLabel("Data:");
 		lblData.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -120,17 +127,23 @@ public class RegistroCadastroView extends JFrame {
 
 				RegistroCadastroView frame = new RegistroCadastroView();
 
-				Registro reg = new Registro();
+				Registro reg = new Registro(matricula, passagem, data, hora);
 				
-				matricula = reg.setMatricula(txtMat.getText());
-				passagem = reg.setPassagem(txtPass.getText());
-				data = reg.setDataPront(txtDate.getText());
-				hora = reg.setTimePront(txtTime.getText());
+				matricula = txtMat.getText();
+				passagem = (Passagem) cbPass.getSelectedItem();
+				data = txtDate.getText();
+				hora = txtTime.getText();
 				
-				RegistroController contr = new RegistroController();
+				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+				try {
+					java.util.Date date = formatter.parse(data);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 				try {
-					contr.persistir(reg);					
+					registroControl.persistir(reg);					
 					btnRegistrar.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
 							MessageSucess msgSucesso = new MessageSucess();
@@ -160,6 +173,6 @@ public class RegistroCadastroView extends JFrame {
 		});
 		btnCancelar.setBounds(356, 173, 89, 23);
 		contentPane.add(btnCancelar);
+
 	}
-	//14 2014101005 SAÍDA 2014-12-03 0:15:00
 }

@@ -146,33 +146,27 @@ public class RespEditView extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 			RespEditView frame = new RespEditView();
 			
-			Responsavel resp = new Responsavel();
+			Responsavel resp = new Responsavel(cpfResp, nomeResp, enderecoResp, emailResp, foneResp);
 			
-			cpfResp = resp.setCpfResp(txtCpf.getText());
-			nomeResp = resp.setNomeResp(txtNomeResp.getText());
-			enderecoResp = resp.setEnderecoResp(txtEndResp.getText());
-			emailResp = resp.setEmailResp(txtEmailResp.getText());
-			foneResp = resp.setFoneResp(txtFoneResp.getText());
+			cpfResp = txtCpf.getText();
+			nomeResp = txtNomeResp.getText();
+			enderecoResp = txtEndResp.getText();
+			emailResp = txtEmailResp.getText();
+			foneResp = txtFoneResp.getText();
 			
 			ResponsavelController contr = new ResponsavelController();
 			
 			try {
 				contr.atualizar(resp);					
-				btnAlterar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						MessageSucess msgSucesso = new MessageSucess();
-						msgSucesso.setVisible(true);
-					}
-				});
+				MessageSucess msgSucesso = new MessageSucess();
+				msgSucesso.setVisible(true);
+			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				btnAlterar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						MessageError msgError = new MessageError();
-						msgError.setVisible(true);
-					}
-				});
 				e.printStackTrace();
+				MessageError msgError = new MessageError();
+				msgError.setVisible(true);
+					
 			}
 			}
 		});		

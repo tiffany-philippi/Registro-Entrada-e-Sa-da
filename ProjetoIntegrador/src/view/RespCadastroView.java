@@ -137,30 +137,37 @@ public class RespCadastroView extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 
 				RespCadastroView frame = new RespCadastroView();
-
-				Responsavel resp = new Responsavel();
-				
-				cpfResp = resp.setCpfResp(txtcpfResp.getText());
-				nomeResp = resp.setNomeResp(txtnomeResp.getText());
-				telefoneResp = resp.setFoneResp(txtFoneResp.getText());
-				enderecoResp = resp.setEnderecoResp(txtEndResp.getText());
-				emailResp = resp.setEmailResp(txtEmailResp.getText());
-				
+				JOptionPane.showMessageDialog(frame, "Preencha todos os Campos.");
+			
+				cpfResp = txtcpfResp.getText();
+				nomeResp = txtnomeResp.getText();
+				telefoneResp = txtFoneResp.getText();
+				enderecoResp = txtEndResp.getText();
+				emailResp = txtEmailResp.getText();
+	
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	
+				Responsavel resp = new Responsavel(cpfResp, nomeResp, telefoneResp, enderecoResp, emailResp);
 				ResponsavelController contr = new ResponsavelController();
-				
 				try {
 					contr.persistir(resp);					
 					btnInserir.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
+							
 							MessageSucess msgSucesso = new MessageSucess();
+							
 							msgSucesso.setVisible(true);
 						}
 					});
+					
+					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					btnInserir.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
+							
 							MessageError msgError = new MessageError();
+							
 							msgError.setVisible(true);
 						}
 					});
