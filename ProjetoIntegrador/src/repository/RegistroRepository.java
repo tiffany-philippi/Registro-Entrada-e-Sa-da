@@ -1,17 +1,10 @@
 package repository;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.SimpleTimeZone;
-import java.util.TimeZone;
 
 import exception.RepositoryException;
 import model.Passagem;
@@ -19,13 +12,43 @@ import model.Registro;
 
 public class RegistroRepository {
 
-	public void persistir(Registro registro) throws SQLException {
+	// CODIGO Ti
+	/* public void persistir(Registro registro) throws SQLException {
+		
+		
 	
-		String sql = "INSERT INTO prontuario VALUES (null, '"+ registro.getMatricula() + "','" + registro.getPassagem() + "','" + registro.getDatePront() + "','" + registro.getTimePront() + "');";
+		String sql = "INSERT INTO prontuario VALUES (null, '"+ registro.getMatricula() + "','" + registro.getPassagem() + "','" + 
+		java.sql.Date.valueOf(registro.getDatePront()) + "','" + java.sql.Time.valueOf(registro.getTimePront()) + "');";
+		
+		
 //		System.out.println(sql);
 		try (Connection conn = ConexaoBD.getConexao()) {
 			Statement stmtInsert = conn.createStatement();
 			stmtInsert.executeUpdate(sql);
+			System.out.println("Registro inserido.");
+		} catch (SQLException e) {
+			throw new RepositoryException(e);
+		}
+	} */
+	
+	public void persistir(Registro registro) throws SQLException {
+		
+		
+		String prontSql = "INSERT INTO prontuario " + "(matricula, passagem, data_pront, time_pront)"
+				+ "VALUES (?, ?, ?, ?)";
+		
+		try (Connection conn = ConexaoBD.getConexao()) {
+			
+			PreparedStatement stmtInsert = conn.prepareStatement(prontSql);
+		
+			stmtInsert.setString(1, registro.getMatricula());
+			stmtInsert.setString(2, registro.getPassagem().toString());
+			stmtInsert.setDate(3, java.sql.Date.valueOf(registro.getDatePront()));
+			stmtInsert.setTime(4, java.sql.Time.valueOf(registro.getTimePront()));
+			
+			
+			stmtInsert.executeUpdate();
+			
 			System.out.println("Registro inserido.");
 		} catch (SQLException e) {
 			throw new RepositoryException(e);
@@ -66,12 +89,11 @@ public class RegistroRepository {
 	
 	
 	public void remover(String codPront) throws SQLException {
-		String sql = "DELETE FROM prontuario WHERE cpd_pront = '" + codPront + "';";
+		String sql = "DELETE FROM prontuario WHERE cod_pront = '" + codPront + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();
 			stmtUpdate.executeUpdate(sql);
-			System.out.println("Registro excluído.");
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}

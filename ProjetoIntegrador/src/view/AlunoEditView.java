@@ -170,7 +170,6 @@ public class AlunoEditView extends JFrame {
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-			AlunoEditView frame = new AlunoEditView();
 			
 			Aluno aluno = new Aluno(matricula, cpfResp, foneResp, nome, endereco, email, periodo, cursando, transpp);
 			
@@ -184,9 +183,7 @@ public class AlunoEditView extends JFrame {
 			
 			
 			try {
-				alunoControl.atualizar(aluno);					
-				MessageSucess msgSucesso = new MessageSucess();
-				msgSucesso.setVisible(true);
+				alunoControl.atualizar(aluno);				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

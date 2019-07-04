@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import exception.RepositoryException;
-import model.Aluno;
 import model.Responsavel;
 
 public class ResponsavelRepository {
@@ -71,6 +70,19 @@ public class ResponsavelRepository {
 	
 	public void atualizar(String nomeAtual, String cpfResp) throws SQLException {
 		String sqlup = "UPDATE resp SET nome_resp = '" + nomeAtual + "' WHERE cpf_resp = '" + cpfResp + "';";
+		Statement stmtUpdate;
+		try (Connection conn = ConexaoBD.getConexao()){
+			stmtUpdate = conn.createStatement();
+			stmtUpdate.executeUpdate(sqlup);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		return;
+	}
+	
+	public void atualizar(Responsavel responsavel) throws SQLException {
+		String sqlup = "UPDATE resp SET nome_resp = '" + responsavel.getNome() + "', endereco_resp = '" + responsavel.getEndereco() +
+				"', telefone_resp = '" + responsavel.getFoneResp() + "', email_resp = '" + responsavel.getEmail() + "' WHERE cpf_resp = '" + responsavel.getCPFResp() + "';";
 		Statement stmtUpdate;
 		try (Connection conn = ConexaoBD.getConexao()){
 			stmtUpdate = conn.createStatement();

@@ -30,6 +30,8 @@ public class RespRemoverView extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private String cpfResp;
+	
+	ResponsavelController respControl = new ResponsavelController();
 
 	/**
 	 * Launch the application.
@@ -88,28 +90,17 @@ public class RespRemoverView extends JFrame {
 		btnRemover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
-				RespRemoverView frame = new RespRemoverView();
-				Responsavel resp = new Responsavel(cpfResp, cpfResp, cpfResp, cpfResp, cpfResp);				
+		
 				cpfResp = textField.getText();
-				ResponsavelController contr = new ResponsavelController();
 				
 				try {
-					contr.excluir(cpfResp);					
-					btnRemover.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent arg0) {
-							MessageSucess msgSucesso = new MessageSucess();							
-							msgSucesso.setVisible(true);
-						}
-					});			
+					respControl.excluir(cpfResp);					
+					MessageSucess msgSucesso = new MessageSucess();							
+					msgSucesso.setVisible(true);	
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					btnRemover.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent arg0) {
-							MessageError msgError = new MessageError();
-							msgError.setVisible(true);
-						}
-					});
+					MessageError msgError = new MessageError();
+					msgError.setVisible(true);
 					e.printStackTrace();
 				}	
 			}

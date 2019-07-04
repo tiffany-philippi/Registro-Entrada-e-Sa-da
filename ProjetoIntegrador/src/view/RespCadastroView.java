@@ -67,59 +67,65 @@ public class RespCadastroView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JLabel lblPreenchaTodosOs = new JLabel("Preencha todos os campos");
+		lblPreenchaTodosOs.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPreenchaTodosOs.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPreenchaTodosOs.setBounds(85, 11, 279, 14);
+		contentPane.add(lblPreenchaTodosOs);
+		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblCpf.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCpf.setBounds(62, 29, 46, 14);
+		lblCpf.setBounds(62, 55, 46, 14);
 		contentPane.add(lblCpf);
 		
 		txtcpfResp = new JTextField();
 		txtcpfResp.setColumns(10);
-		txtcpfResp.setBounds(118, 27, 222, 20);
+		txtcpfResp.setBounds(118, 53, 222, 20);
 		contentPane.add(txtcpfResp);
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblNome.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNome.setBounds(62, 54, 46, 14);
+		lblNome.setBounds(62, 80, 46, 14);
 		contentPane.add(lblNome);
 		
 		txtnomeResp = new JTextField();
 		txtnomeResp.setColumns(10);
-		txtnomeResp.setBounds(118, 52, 222, 20);
+		txtnomeResp.setBounds(118, 78, 222, 20);
 		contentPane.add(txtnomeResp);
 		
 		JLabel lblEndereo = new JLabel("Endere\u00E7o:");
 		lblEndereo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEndereo.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEndereo.setBounds(10, 79, 98, 14);
+		lblEndereo.setBounds(10, 105, 98, 14);
 		contentPane.add(lblEndereo);
 		
 		txtEndResp = new JTextField();
 		txtEndResp.setColumns(10);
-		txtEndResp.setBounds(118, 77, 222, 20);
+		txtEndResp.setBounds(118, 103, 222, 20);
 		contentPane.add(txtEndResp);
 		
 		JLabel lblTelefone = new JLabel("Telefone:");
 		lblTelefone.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTelefone.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTelefone.setBounds(20, 104, 88, 14);
+		lblTelefone.setBounds(20, 130, 88, 14);
 		contentPane.add(lblTelefone);
 		
 		txtFoneResp = new JTextField();
 		txtFoneResp.setColumns(10);
-		txtFoneResp.setBounds(118, 102, 222, 20);
+		txtFoneResp.setBounds(118, 128, 222, 20);
 		contentPane.add(txtFoneResp);
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblEmail.setBounds(30, 129, 78, 14);
+		lblEmail.setBounds(30, 155, 78, 14);
 		contentPane.add(lblEmail);
 		
 		txtEmailResp = new JTextField();
 		txtEmailResp.setColumns(10);
-		txtEmailResp.setBounds(118, 127, 222, 20);
+		txtEmailResp.setBounds(118, 153, 222, 20);
 		contentPane.add(txtEmailResp);
 		
 		JButton btnVoltar = new JButton("Voltar");
@@ -128,24 +134,19 @@ public class RespCadastroView extends JFrame {
 				dispose();
 			}
 		});
-		btnVoltar.setBounds(133, 183, 89, 23);
+		btnVoltar.setBounds(133, 209, 89, 23);
 		contentPane.add(btnVoltar);
 		
 		JButton btnInserir = new JButton("Inserir");	
 		btnInserir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
-				RespCadastroView frame = new RespCadastroView();
-				JOptionPane.showMessageDialog(frame, "Preencha todos os Campos.");
 			
 				cpfResp = txtcpfResp.getText();
 				nomeResp = txtnomeResp.getText();
 				telefoneResp = txtFoneResp.getText();
 				enderecoResp = txtEndResp.getText();
 				emailResp = txtEmailResp.getText();
-	
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 				Responsavel resp = new Responsavel(cpfResp, nomeResp, telefoneResp, enderecoResp, emailResp);
 				ResponsavelController contr = new ResponsavelController();
@@ -176,7 +177,7 @@ public class RespCadastroView extends JFrame {
 			}
 		});
 		
-		btnInserir.setBounds(232, 183, 89, 23);
+		btnInserir.setBounds(232, 209, 89, 23);
 		contentPane.add(btnInserir);
 	
 	}

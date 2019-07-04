@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 
 import controller.RegistroController;
 import controller.ResponsavelController;
@@ -22,19 +23,23 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFormattedTextField;
 
 public class RegistroCadastroView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtMat;
-	private JTextField txtDate;
-	private JTextField txtTime;
 
 	private String matricula;
 	private Passagem passagem;
@@ -102,12 +107,20 @@ public class RegistroCadastroView extends JFrame {
 		lblData.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblData.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblData.setBounds(282, 94, 68, 14);
-		contentPane.add(lblData);
+		contentPane.add(lblData);		
 		
-		txtDate = new JTextField();
-		txtDate.setColumns(10);
-		txtDate.setBounds(356, 92, 166, 20);
-		contentPane.add(txtDate);
+		JFormattedTextField txtData = new JFormattedTextField();
+		txtData.setBounds(360, 92, 139, 20);
+		contentPane.add(txtData);
+		
+		try {
+			// CRIA A MASCARA
+			MaskFormatter mask = new MaskFormatter("##/##/####");
+			// INSTALA A MASCARA NO CAMPO "txtData"
+			mask.install(txtData);
+		} catch (Exception excecao) {
+			excecao.printStackTrace();
+		}
 		
 		JLabel lblHora = new JLabel("Hora:");
 		lblHora.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -115,50 +128,48 @@ public class RegistroCadastroView extends JFrame {
 		lblHora.setBounds(282, 121, 68, 14);
 		contentPane.add(lblHora);
 		
-		txtTime = new JTextField();
-		txtTime.setColumns(10);
-		txtTime.setBounds(356, 119, 166, 20);
-		contentPane.add(txtTime);
+		
+		JFormattedTextField txtHora = new JFormattedTextField();
+		txtHora.setBounds(360, 119, 139, 20);
+		contentPane.add(txtHora);
+		
+		try {
+			// CRIA A MASCARA
+			MaskFormatter mask = new MaskFormatter("##:##:##");
+			// INSTALA A MASCARA NO CAMPO "txtHora"
+			mask.install(txtHora);
+		} catch (Exception excecao) {
+			excecao.printStackTrace();
+		}
 		
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
-				RegistroCadastroView frame = new RegistroCadastroView();
-
-				Registro reg = new Registro(matricula, passagem, data, hora);
-				
 				matricula = txtMat.getText();
 				passagem = (Passagem) cbPass.getSelectedItem();
-				data = txtDate.getText();
-				hora = txtTime.getText();
+				data = txtData.getText();
+				hora = txtHora.getText();
 				
-				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-				try {
-					java.util.Date date = formatter.parse(data);
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				LocalDate date = LocalDate.parse(data, formatter);
+				
+				DateTimeFormatter horaformatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+				LocalTime time = LocalTime.parse(hora, horaformatter);
+				
+				Registro reg = new Registro(matricula, passagem, date, time);
+				
 				
 				try {
 					registroControl.persistir(reg);					
-					btnRegistrar.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent arg0) {
-							MessageSucess msgSucesso = new MessageSucess();
-							msgSucesso.setVisible(true);
-						}
-					});
+					MessageSucess msgSucesso = new MessageSucess();
+					msgSucesso.setVisible(true);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
-					btnRegistrar.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent arg0) {
-							MessageError msgError = new MessageError();
-							msgError.setVisible(true);
-						}
-					});
 					e.printStackTrace();
+					MessageError msgError = new MessageError();
+					msgError.setVisible(true);
 				}			
 			}
 		});
@@ -173,6 +184,7 @@ public class RegistroCadastroView extends JFrame {
 		});
 		btnCancelar.setBounds(356, 173, 89, 23);
 		contentPane.add(btnCancelar);
+
 
 	}
 }

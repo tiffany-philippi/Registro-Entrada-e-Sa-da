@@ -38,13 +38,17 @@ public class RespEditView extends JFrame {
 	private JTextField txtEndResp;
 	private JTextField txtEmailResp;
 	private JTextField txtFoneResp;
+	
 	private String cpfResp;
 	private String foneResp;
 	private String nomeResp;
 	private String enderecoResp;
 	private String emailResp;
-	private JTable table;
 
+
+	ResponsavelController responsContr = new ResponsavelController();
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -66,7 +70,7 @@ public class RespEditView extends JFrame {
 	 */
 	public RespEditView() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 741, 432);
+		setBounds(100, 100, 738, 326);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -128,11 +132,11 @@ public class RespEditView extends JFrame {
 		txtEmailResp.setBounds(458, 183, 222, 20);
 		contentPane.add(txtEmailResp);
 		
-		JLabel lblPeríodo = new JLabel("Telefone:");
-		lblPeríodo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblPeríodo.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblPeríodo.setBounds(34, 185, 78, 14);
-		contentPane.add(lblPeríodo);
+		JLabel lblTelefone = new JLabel("Telefone:");
+		lblTelefone.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTelefone.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblTelefone.setBounds(34, 185, 78, 14);
+		contentPane.add(lblTelefone);
 		
 		txtFoneResp = new JTextField();
 		txtFoneResp.setColumns(10);
@@ -144,9 +148,8 @@ public class RespEditView extends JFrame {
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-			RespEditView frame = new RespEditView();
 			
-			Responsavel resp = new Responsavel(cpfResp, nomeResp, enderecoResp, emailResp, foneResp);
+			Responsavel resp = new Responsavel(cpfResp, nomeResp, enderecoResp, foneResp, emailResp);
 			
 			cpfResp = txtCpf.getText();
 			nomeResp = txtNomeResp.getText();
@@ -154,10 +157,9 @@ public class RespEditView extends JFrame {
 			emailResp = txtEmailResp.getText();
 			foneResp = txtFoneResp.getText();
 			
-			ResponsavelController contr = new ResponsavelController();
 			
 			try {
-				contr.atualizar(resp);					
+				responsContr.atualizar(resp);					
 				MessageSucess msgSucesso = new MessageSucess();
 				msgSucesso.setVisible(true);
 			
@@ -182,47 +184,6 @@ public class RespEditView extends JFrame {
 		});
 		btnVoltar.setBounds(503, 245, 89, 23);
 		contentPane.add(btnVoltar);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(0, 300, 725, 45);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		table.setBackground(new Color(240, 255, 240));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"CPF", "Nome", "Endere\u00E7o", "Telefone", "Email"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		scrollPane.setViewportView(table);
-		
-		JButton btnVer = new JButton("Ver altera\u00E7\u00F5es");
-		btnVer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				DefaultTableModel modelo = (DefaultTableModel) table.getModel();
-				modelo.setNumRows(0);
-//				modelo.addRow(new Object[] {} "cpf_resp" );
-			}
-		});
-		btnVer.setBackground(new Color(240, 255, 240));
-		btnVer.setBounds(576, 359, 139, 23);
-		contentPane.add(btnVer);
-		
-		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(105, 105, 105));
-		separator.setBackground(new Color(169, 169, 169));
-		separator.setBounds(0, 287, 725, 2);
-		contentPane.add(separator);
 		
 
 	}

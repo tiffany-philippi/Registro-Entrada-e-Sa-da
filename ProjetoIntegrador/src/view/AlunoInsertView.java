@@ -38,6 +38,7 @@ public class AlunoInsertView extends JFrame {
 	private JTextField txtEndAluno;
 	private JTextField txtEmailAluno;
 	private JTextField txtcpfResp;
+	private JTextField txtFone;
 	
 	private String matricula;
 	private String cpfResp;
@@ -49,9 +50,7 @@ public class AlunoInsertView extends JFrame {
 	private Periodo periodo;
 	private SimNao transpp;
 	
-	ResponsavelController respControl = new ResponsavelController(); // Controller responsável pelas interações de Responsável 
 	AlunoController alunoControl = new AlunoController(); // Controller responsável pelas interações de Aluno 
-	private JTextField txtFone;
 	
 	
 	/**
@@ -184,10 +183,6 @@ public class AlunoInsertView extends JFrame {
 		btnInserir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-			AlunoInsertView frame = new AlunoInsertView();
-			
-//			Responsavel busca_responsavel = respControl.consultar(cpfResp);
-//			foneResp = busca_responsavel.getFoneResp();
 			
 			matricula = txtaMat.getText();
 			cpfResp = txtcpfResp.getText();
@@ -204,21 +199,13 @@ public class AlunoInsertView extends JFrame {
 			
 			try {
 				alunoControl.persistir(aluno);					
-				btnInserir.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						MessageSucess msgSucesso = new MessageSucess();
-						msgSucesso.setVisible(true);
-					}
-				});
+				MessageSucess msgSucesso = new MessageSucess();
+				msgSucesso.setVisible(true);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				btnInserir.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						MessageError msgError = new MessageError();
-						msgError.setVisible(true);
-					}
-				});
 				e.printStackTrace();
+				MessageError msgError = new MessageError();
+				msgError.setVisible(true);
 			}
 			}
 		});		

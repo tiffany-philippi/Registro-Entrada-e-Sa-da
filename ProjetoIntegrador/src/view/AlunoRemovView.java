@@ -31,6 +31,8 @@ public class AlunoRemovView extends JFrame {
 	private JTextField textField;
 	private String matricula;
 
+	AlunoController alunoControl = new AlunoController();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -89,22 +91,18 @@ public class AlunoRemovView extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
-				AlunoRemovView frame = new AlunoRemovView();
 				matricula = textField.getText();
-				AlunoController contr = new AlunoController();
 				
 				try {
-					contr.excluir(matricula);
+					alunoControl.excluir(matricula);
+					MessageSucess msg = new MessageSucess();
+					msg.setVisible(true);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}					
-				btnRemover.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						MessageSucess msgSucesso = new MessageSucess();							
-						msgSucesso.setVisible(true);
-					}
-				});	
+					MessageError msg = new MessageError();
+					msg.setVisible(true);
+				}				
 			}
 		});
 		

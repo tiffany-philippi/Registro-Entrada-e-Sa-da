@@ -63,16 +63,16 @@ public class RegistroConsultView extends JFrame {
 		setContentPane(contentPane); 
 		contentPane.setLayout(null);
 		
-		JLabel lblInsiraOCdigo = new JLabel("Insira o c\u00F3digo de registro");
+		JLabel lblInsiraOCdigo = new JLabel("Insira a matr\u00EDcula do aluno");
 		lblInsiraOCdigo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblInsiraOCdigo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInsiraOCdigo.setBounds(99, 11, 249, 37);
 		contentPane.add(lblInsiraOCdigo);
 		
-		JLabel lblCd = new JLabel("C\u00F3d.:");
+		JLabel lblCd = new JLabel("Matricula:");
 		lblCd.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblCd.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblCd.setBounds(82, 62, 46, 14);
+		lblCd.setBounds(39, 62, 89, 14);
 		contentPane.add(lblCd);
 		
 		txtCod = new JTextField();
@@ -121,7 +121,7 @@ public class RegistroConsultView extends JFrame {
 		});
 		
 		JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 119, 411, 111);
+        scrollPane.setBounds(10, 119, 414, 48);
         contentPane.add(scrollPane);
         
         table = new JTable();

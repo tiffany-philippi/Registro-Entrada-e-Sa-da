@@ -34,7 +34,9 @@ public class ResponsavelController {
 		this.repository.atualizar(nomeAtual, cpfResp);
 	}	
 
-	
+	public void atualizar(Responsavel resp) throws SQLException {
+		this.repository.atualizar(resp);
+	}	
 	 
 	
 	

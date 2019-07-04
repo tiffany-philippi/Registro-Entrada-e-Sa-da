@@ -27,6 +27,8 @@ public class RegistroRemovView extends JFrame {
 	private JTextField textField;
 	private String cod_pront;
 
+	RegistroController regisControl = new RegistroController();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -73,14 +75,12 @@ public class RegistroRemovView extends JFrame {
 		
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				RegistroRemovView frame = new RegistroRemovView();
-				Registro reg = new Registro();				
-				cod_pront = reg.setCodPront(textField.getText());
-				RegistroController contr = new RegistroController();
+			public void actionPerformed(ActionEvent arg0) {	
+				
+				cod_pront = textField.getText();
 				
 				try {
-					contr.excluir(cod_pront);
+					regisControl.excluir(cod_pront);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -97,7 +97,7 @@ public class RegistroRemovView extends JFrame {
 		contentPane.add(btnRemover);
 		
 		JButton btnVoltar = new JButton("Cancelar");
-		btnRemover.addActionListener(new ActionListener() {
+		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}

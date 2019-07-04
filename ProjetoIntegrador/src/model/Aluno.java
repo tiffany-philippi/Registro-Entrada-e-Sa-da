@@ -77,6 +77,11 @@ public class Aluno extends Pessoa {
 	public void setEmail_aluno(String email_aluno) {
 		this.emailAluno = email_aluno;
 	}
+
+	public void setMatricula(String matriculaAluno) {
+		this.matricula = matriculaAluno;
+		
+	}
 }
 	
 	
